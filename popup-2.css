@@ -1,0 +1,102 @@
+    html, body {
+                width: 260px;
+                height: 320px;
+                margin: 0;
+                padding: 0;
+                background-color: #ffffff;
+            }
+    
+    html, h1 {
+        margin: 0;
+        
+    }
+      [brand] {
+           display: block;
+         margin-left: auto;
+         margin-right: auto;
+          margin-top: 30px;
+          
+      }
+      
+    .bold {
+          margin: 10px;
+          font-weight:bold;
+          font-family: "Arial", Helvetica, sans-serif;
+      }
+      
+      .normal {
+          margin: 10px;
+          font-weight:normal;
+          font-family: "Arial", Helvetica, sans-serif;
+          
+          
+      }
+      
+      .center {
+              margin-left: auto;
+              margin-right: auto;
+          
+      }
+
+      .buttons {
+
+      
+      background-color: #39B54A;
+     -moz-border-radius:10px;
+     -webkit-border-radius:10px;
+     border-radius:20px;
+     border:0px solid #18ab29;
+     display:inline-block;
+     cursor:pointer;
+     color: #ffffff;
+     font-family:arial;
+     font-size:12px;
+     padding:10px 27px;
+     text-decoration:none;
+     text-shadow:0px 1px 0px #2f6627;
+
+
+
+      }
+
+      #signIn {
+      margin-left: 50px;
+
+
+
+
+      }
+
+
+      #createAccount {
+        margin-left: 130px;
+
+
+      }
+
+
+
+
+      .input {
+        margin-left: 50px;
+
+
+
+
+      }
+
+
+      
+      
+      [dame=pref] {
+          
+          text-align: center;
+          font-size: 150%;
+          
+      }
+      
+      [name] {
+          
+          margin-left: 20px;
+          
+      }
