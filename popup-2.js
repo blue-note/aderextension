@@ -12,6 +12,8 @@ initScreen();
 function initScreen() {
 //document.getElementById("signIn").innerHTML = "sign in";
 //document.getElementById("createAccount").innerHTML = "create account";
+document.getElementById("accountButton")
+
 
 document.getElementById("accountButton").addEventListener("click", function() {
 //this function should get input form data and console log it
@@ -33,7 +35,8 @@ regularScreen();
 }
 
 function regularScreen() {
-document.getElementById("inputForm").style.display = 'none';
+document.getElementById("signin").style.display = 'none';
+document.getElementById("prefs").style.display = 'block'; 
 //document.getElementById("accountButton").style.display = 'none';
 //generateButtons();
 
