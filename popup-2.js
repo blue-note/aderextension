@@ -1,5 +1,7 @@
+var backgroundPage = chrome.extension.getBackgroundPage();
 
 window.onload = function() {
+createAccount("janita", "janitaPassword");
 //initialize();  
 update();
 initScreen();
@@ -8,10 +10,42 @@ initScreen();
 }
 
 function initScreen() {
-document.getElementById("signIn").innerHTML = "sign in";
-document.getElementById("createAccount").innerHTML = "create account";
+//document.getElementById("signIn").innerHTML = "sign in";
+//document.getElementById("createAccount").innerHTML = "create account";
+
+document.getElementById("accountButton").addEventListener("click", function() {
+//this function should get input form data and console log it
+/*
+var form = document.getElementById("inputForm");
+var email = form.email.value;
+var password = form.password.value;
+console.log("email: " + email + " password: " + password);
+*/
+
+backgroundPage.openTab("website/signIn.html");
+regularScreen();
+
+
+
+
+});
 
 }
+
+function regularScreen() {
+document.getElementById("inputForm").style.display = 'none';
+//document.getElementById("accountButton").style.display = 'none';
+//generateButtons();
+
+var elements = document.getElementsByClassName("");
+console.log("grid elements: " + elements);
+for (el in elements) {
+    el.innerHTML = "grid element";
+    console.log("inner HTML" + el.innerHTML);
+}
+}
+
+
 
 function initialize() {
     //if(null == localStorage["initialized"])
