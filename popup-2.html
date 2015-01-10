@@ -34,31 +34,32 @@
 
 
 
-  <div id="prefs" class="container" style="display: none">
-
-      <form class="form-signin" id="inputForm" role="form">
-        <!--<h2 class="form-signin-heading">Please sign in</h2> -->
-        <input type="email" name="email" class="form-control" placeholder="email" required autofocus>
-        <input type="password" name="password" class="form-control" placeholder="secondpassword" required>
-        <div class="checkbox">
-          <!--
+<form class="form-group" id="prefs" style="display:none">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Technology
+    </label>
+    <br>
+      <label>
+      <input type="checkbox"> Music
+    </label>
+    <br>
+    <label>
+      <input type="checkbox"> Gaming
+    </label>
+    <br>
           <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        -->
-        </div>
-        <button href="website/signIn.html"class="btn btn-lg btn-primary btn-block" id="accountButton" type="submit">Sign In</button>
-      </form>
+      <input type="checkbox"> Fashion
+    </label>
+    <br>
+      <label>
+      <input type="checkbox"> Cosmetics
+    </label>
+    <br>
+  </div>
 
-        <div class="row">
-        <div id="col1" class="col-md-4"></div>
-        <div id="col2" class="col-md-4"></div>
-        <div id="col3" class="col-md-4"></div>
-      </div>
-
-    </div>
-
-
+  <button id="prefsButton" type="submit" class="btn btn-default">Save</button>
+</form>
 
 
 

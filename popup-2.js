@@ -1,9 +1,9 @@
 var backgroundPage = chrome.extension.getBackgroundPage();
 
 window.onload = function() {
-createAccount("janita", "janitaPassword");
+//createAccount("janita", "janitaPassword");
 //initialize();  
-update();
+//update();
 initScreen();
 //generateButtons();
  //setTimeout(update(),50);      
@@ -12,7 +12,6 @@ initScreen();
 function initScreen() {
 //document.getElementById("signIn").innerHTML = "sign in";
 //document.getElementById("createAccount").innerHTML = "create account";
-document.getElementById("accountButton")
 
 
 document.getElementById("accountButton").addEventListener("click", function() {
@@ -24,17 +23,14 @@ var password = form.password.value;
 console.log("email: " + email + " password: " + password);
 */
 
-backgroundPage.openTab("website/signIn.html");
-regularScreen();
-
-
-
+//backgroundPage.openTab("website/signIn.html");
+prefScreen();
 
 });
 
 }
 
-function regularScreen() {
+function prefScreen() {
 document.getElementById("signin").style.display = 'none';
 document.getElementById("prefs").style.display = 'block'; 
 //document.getElementById("accountButton").style.display = 'none';
@@ -47,7 +43,6 @@ for (el in elements) {
     console.log("inner HTML" + el.innerHTML);
 }
 }
-
 
 
 function initialize() {
@@ -66,7 +61,10 @@ Number.prototype.toFixedDown = function(digits) {
     return m ? parseFloat(m[1]) : this.valueOf();
 };
 
+
 function update() { 
+    //NEED TO UPDATE TO THIS VERSION: NO MASTER OBJECT
+    /*
     {
     master.filterImages();
    // master.filterPrefs();
@@ -78,6 +76,7 @@ function update() {
     master.filterImages(array_of_images);
     master.sortSmall();
     }
+    */
     incrementImpressions(4);
     chrome.storage.sync.get(["sumImpressions"], function(data) {
         document.getElementById("impressionCount").innerHTML += " "+ data.sumImpressions;

@@ -271,12 +271,6 @@ function retrieveAds() {
 }
 
 
-
-
-
-
-
-
 function testAds() {
     var ads = retrieveAds();
     var i = 0;
