@@ -1,20 +1,30 @@
 var backgroundPage = chrome.extension.getBackgroundPage();
 
-window.onload = function() {
+$(document).ready(function() {
+$("#prefs").submit(function() {
+    return false;
+
+});
+
 //createAccount("janita", "janitaPassword");
 //initialize();  
 //update();
-initScreen();
+
+initPage();
 //generateButtons();
  //setTimeout(update(),50);      
+});
+
+
+function defaultPage() {
+  document.getElementById("prefs").style.display = 'none';  
+  document.getElementById("signin").style.display = 'none';
+  document.getElementById("defaultPage").style.display = 'block';
 }
 
-function initScreen() {
-//document.getElementById("signIn").innerHTML = "sign in";
-//document.getElementById("createAccount").innerHTML = "create account";
+function initPage() {
+$("button[tag='account']").click(function() {
 
-
-document.getElementById("accountButton").addEventListener("click", function() {
 //this function should get input form data and console log it
 /*
 var form = document.getElementById("inputForm");
@@ -22,15 +32,19 @@ var email = form.email.value;
 var password = form.password.value;
 console.log("email: " + email + " password: " + password);
 */
-
 //backgroundPage.openTab("website/signIn.html");
-prefScreen();
+prefPage();
 
 });
 
+$("button[tag='save']").click(function() {
+    defaultPage();
+
+    });
+
 }
 
-function prefScreen() {
+function prefPage() {
 document.getElementById("signin").style.display = 'none';
 document.getElementById("prefs").style.display = 'block'; 
 //document.getElementById("accountButton").style.display = 'none';

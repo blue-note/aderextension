@@ -1,18 +1,26 @@
 <!doctype html>
 <html>
     
-   
     <h1>
     
-    <img src="popupA.png" brand="ader" style="width:100px;height:100px">
+    
     </h1>
         
   <body>
+
+<div class="container" id="logo">
+   <div class="row">
+    <div id="col0" class="col-md-4">
+      <img src="popupA.png" style="width:100px;height:100px">
+    </div>
+</div>
+</div>
+  <div id="padding"></div>
     <div id="signin" class="container">
 
-      <form class="form-signin" id="inputForm" role="form">
-        <!--<h2 class="form-signin-heading">Please sign in</h2> -->
+      <form action="javascript:void(0)" class="form-signin" id="inputForm" role="form">
         <input type="email" name="email" class="form-control" placeholder="email" required autofocus>
+        <div id="padding"></div>
         <input type="password" name="password" class="form-control" placeholder="password" required>
         <div class="checkbox">
           <!--
@@ -21,20 +29,33 @@
           </label>
         -->
         </div>
-        <button href="website/signIn.html"class="btn btn-lg btn-primary btn-block" id="accountButton" type="submit">Sign In</button>
+        <button tag="account" class="btn btn-md btn-primary btn-block" id="button" type="submit">Sign In</button>
       </form>
 
-        <div class="row">
-        <div id="col1" class="col-md-4"></div>
-        <div id="col2" class="col-md-4"></div>
-        <div id="col3" class="col-md-4"></div>
-      </div>
+       
 
     </div>
 
 
+<div class="container" id="defaultPage" style="display: none">
+  <div id="padding"></div>
+  <div id="padding"></div>
+   <div class="row">
+        <div id="col1" class="col-md-1">Rewards: <span id="var">$15.00</span></div>
+  </div>
+ <div class="row">
+        <div id="col1" class="col-md-1">Ads Seen: <span id="var">20</span></div>
+  </div>
+<button tag="prefs" class="btn btn-md btn-primary btn-block" id="button" type="submit">My Preferences</button>
+</div>
 
-<form class="form-group" id="prefs" style="display:none">
+
+
+<div class="container" id="prefs" style="display:none">
+<form action="javascript:void(0)" class="form-group"  role="form">
+  <div class="row">
+   <div id="col2" class="col-md-1">My Preferences</div>
+ </div>
   <div class="checkbox">
     <label>
       <input type="checkbox"> Technology
@@ -57,45 +78,23 @@
     </label>
     <br>
   </div>
-
-  <button id="prefsButton" type="submit" class="btn btn-default">Save</button>
+ <button tag="save" class="btn btn-md btn-primary btn-block" id="button" type="submit">Save</button>
 </form>
+</div>
 
-
-
-
-    <!-- OLD DIVS: NOW TRYING BOOTSTRAP
-    <div id="impressionCount" class="bold"></div>
-      <div id="totalEarnings" class="bold"></div> 
-      <br>
-      <div id="preferences" class="bold" dame="pref"></div>
-
-      <div id="logInput"> 
-
-      <form>
-    Paypal Email: <input type="text" class="input"> <br> <br>
-    Password: <input type="password"class="input">
-    </form>
-      <button id="signIn" class="buttons"></button> 
-      
-      </div>
-
-      <button id="createAccount" class="buttons"></button>
-    -->
+ 
     </body>  
-    <script src ="functions.js"></script>
+   <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
       <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
    <link rel="stylesheet" href="popup-2.css"/> 
-   <link href="signin.css" rel="stylesheet">
-
+   <!--link href="signin.css" rel="stylesheet"-->
+<script src ="functions.js"></script>
  <script src="jquery.min.js"></script>    
  <script src="pics/pics.js"></script>
 <script src="functions.js"></script>
 <script src="toolbox.js"></script>
-    
-<script src="functions.js"></script>
  <script src="popup-2.js"></script>
  </html>
 

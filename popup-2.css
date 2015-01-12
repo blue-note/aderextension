@@ -1,33 +1,53 @@
+#defaultPage #var {
+  color: #39B54A;
+  font-size: 20px;
+}
+
+
 #prefs {
 
-padding-left: 20px;
+-webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+text-align: center;
 
 }
 
-#prefsButton {
-
-color: ;
-
+#prefs .checkbox {
+text-align: left;
 }
 
+form {
+  width: 200px;
+}
+
+.form-group {
+   outline: none;
+  border: none !important;
+-webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
 
     html, body {
                 width: 260px;
-                height: 320px;
+                height: 340px;
                 margin: 0;
                 padding: 0;
                 background-color: #ffffff;
+                font-family: 'Raleway', Arial;
             }
     
     html, h1 {
         margin: 0;
         
     }
-      [brand] {
-           display: block;
+      #logo {
+          display: block;
          margin-left: auto;
          margin-right: auto;
-          margin-top: 5px;          
+          margin-top: 5px; 
+          text-align: center;         
       }
       
     .bold {
@@ -47,6 +67,7 @@ color: ;
            margin-right: auto;    
       }
 
+/*
       .buttons { 
       background-color: #39B54A;
      -moz-border-radius:10px;
@@ -62,26 +83,97 @@ color: ;
      text-decoration:none;
      text-shadow:0px 1px 0px #2f6627;
     }
-
+*/
       #signIn {
       margin-left: 50px;
 
       }
 
-
       .input {
         margin-left: 50px;
       }
 
-      [dame=pref] {
-          
-          text-align: center;
-          font-size: 150%;
-          
-      }
-      
-      [name] {
-          
-          margin-left: 20px;
-          
-      }
+         
+      body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  background-color: #F7F7F7;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  margin-left: 0px;
+  height: 40px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#button {
+
+font-size: 16px;
+height: 10%;
+background-color: #39B54A;
+border-color: #39B54A;
+-webkit-box-shadow: none !important;
+-moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+
+#padding {
+  padding-top: 10px;
+}
+
+#defaultPage .col-md-1 {
+  padding-left: 20% !important;
+}
+
+#col1 {
+  padding-left: 20% !important;
+  padding-top: 10px;
+  color: #000000;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+
+}
+
+#col2 {
+  
+  padding-top: 5px;
+  padding-bottom: -10px;
+  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+
+}
+
