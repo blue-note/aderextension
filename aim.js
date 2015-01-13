@@ -1,5 +1,5 @@
 // saves all elements it encounters 
-debug = true;
+debug = false;
 extensionID = chrome.runtime.id;
 
 
@@ -46,6 +46,8 @@ aim = function(details){
 		chrome.runtime.sendMessage(extensionID,message,function(imgObj){
 			if(imgObj)
 			{
+				console.log("response: ");
+				console.log(imgObj.name);
 				log("response came back",imgObj.width + " "+ imgObj.height);
 				insert(el,size,imgObj);
 			}

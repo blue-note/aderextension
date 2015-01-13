@@ -34,7 +34,8 @@ chop = function(word)
 
 log = function(word, message){
     //var debug = true;
-    if(!debug)return;
+    return;
+    if(!debug) return;
     console.log(word + ": "+message);
 }
 

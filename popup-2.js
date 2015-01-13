@@ -51,12 +51,12 @@ function savePrefs() {
         prefs[s] = $(value).is(":checked");
         if($(value).is(":checked")) count++;
         //console.log("prefs in popup: " + prefs);
-        console.log("prefs in popup: " + prefs[s]);
+        //console.log("prefs in popup: " + prefs[s]);
     });
     if (count == 0) prefs = {"tech": true, "music": false, "gaming": false, "fashion": false, "cosmetics": false};
     console.log("prefs after each: " + prefs);
     chrome.storage.sync.set({"preferences": prefs}, function() {
-        console.log("callbackFilter");
+    //console.log("callbackFilter");
    //backgroundPage.masterImageList = new masterImageList();
     backgroundPage.masterImageList.filterImages();
     defaultPage();
