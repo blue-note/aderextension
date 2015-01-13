@@ -18,16 +18,18 @@ function imgObj(filename, width, length, preference) {
 
 var f = "fashion";
 var t = "tech";
-var m = "mis";
+var m = "music";
+var c = "cosmetics";
+var g = "gaming";
 
-var imageArray = [new imgObj("Beyonce160x600.jpg", 160, 600, f),
+var imageArray = [new imgObj("Beyonce160x600.jpg", 160, 600, m),
                  new imgObj("blackmaillot336x280.jpg",336, 280,f),
                  new imgObj("Bootiful336x280.jpg",336 ,280, f),
-                 new imgObj("candy.gif",300,250, f),
+                 new imgObj("candy.gif",300,250, c),
                   new imgObj("GDN336x280.jpg",336,280,f),
                   new imgObj("gilt_banner.jpg",620,250,f),
                   new imgObj("harlow.jpg",300,250,f),
-                  new imgObj("LadyGaga728x90.jpg",728,90,f),
+                  new imgObj("LadyGaga728x90.jpg",728,90,m),
                   new imgObj("mbl_300x600.jpg",300,600,f),
                   new imgObj("plush.jpg",336,280,f),
                   new imgObj("Sephora728x90.jpg",728,90,f),
@@ -40,14 +42,31 @@ var imageArray = [new imgObj("Beyonce160x600.jpg", 160, 600, f),
                   new imgObj("iphone160x600.jpg",160,600,t),
                   new imgObj("javascript214x178.jpg",214,178,t),
                   new imgObj("kindle300x250.jpg",300,250,t),
-                  new imgObj("onslaught729x90.jpg",729,90,t),
+                  //new imgObj("onslaught729x90.jpg",729,90,t),
                   new imgObj("ps3_300x250.png",300,250,t),
                   new imgObj("ros336x280.png",336,280,t),
                   new imgObj("rumble336x280.jpg",336,280,t),
                   new imgObj("V3_336x280.jpg",336,280,t),
                   new imgObj("WOW160x600.png",160,600,t),
-                  new imgObj("barack.jpg",300,250,m)];
-
+                  new imgObj("barack.jpg",300,250,"mis"),
+                  new imgObj("diablo.jpg", 336, 280, g),
+                  new imgObj("ds.jpg", 336, 280, g),
+                  new imgObj("rumble.jpg", 336, 280, g),
+                  new imgObj("ps3.jpg", 300, 250, g),
+                  new imgObj("runescape.jpg", 766, 142, g),
+                  new imgObj("halloween336x280.jpg", 336, 280, c),
+                  new imgObj("stila300x250.jpg", 300, 250, c),
+                  new imgObj("fragrance300x250.jpg", 300,250, c),
+                  new imgObj("sephora728x90.jpg", 728, 90, c),
+                  new imgObj("katy686x160.jpg", 686, 160, c),
+                  new imgObj("aderBanner.jpg", 728, 90, t),
+                  new imgObj("shave.jpg", 300, 250, "mis"),
+new imgObj("tennis.jpg", 300, 600, "mis"),
+new imgObj("staples.jpg", 600, 267, "mis"),
+new imgObj("priceline.jpg", 595, 165, "mis"),
+new imgObj("studyabroad.jpg", 710, 150, "mis"),
+new imgObj("office.jpg", 800,229, "mis"),
+                  new imgObj("note.png", 500, 500, m)];
                   
 
 /*
@@ -73,28 +92,44 @@ var imageArray = [
 
 */
 
-returnImages = function(){
+returnImages = function(callback){
   // returns array of imageobjects matching preferences saved in local storage
   // technology, music, gaming, fashion, cosmetics,
   const interests = ["tech","music","gaming","fashion","cosmetics"];
-  var optionsTest = [true,false,false,false,false];
-  var options = optionsTest;
-  if(undefined != localStorage["preferences"]) options = localStorage["preferences"];
+  //var optionsTest = {"tech": true, "music": false, "gaming": false, "fashion": true, "cosmetics": false};
+  //var options = optionsTest;
+  var storagePrefs;
+  chrome.storage.sync.get(["preferences"], function(data) {
+    storagePrefs = data["preferences"];  
+    var options = storagePrefs;
+    callback(each(options));
+  });
+  
+/*
+  if(!undefine(storagePrefs)) {
+    options = storagePrefs;
+}
+*/
   // imageArray has all images that exist
-  var fuzeArray = [];
-  for(i = 0; i < options.length; i++){
-    if(options[i]){
-      for(j = 0; j < imageArray.length; j++){
-        if(imageArray[j].preference == interests[i])
-          fuzeArray.push(imageArray[j]);
-      }
-    }
-  }
+  
+};
 
+function each(options) {
+  var fuzeArray = [];
+    $.each(options, function(index, value) {
+    if (value) {
+      for(j = 0; j < imageArray.length; j++){
+        //console.log(imageArray[j].preference);
+        if(imageArray[j].preference == index) {
+          fuzeArray.push(imageArray[j]);
+
+        }
+      }
+    } 
+  });
 
     return fuzeArray; //imageArray
-    
-};
+}
 
 function initPics(){
     //if(null == localStorage["initialized"]){

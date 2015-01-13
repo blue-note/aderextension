@@ -41,10 +41,10 @@
   <div id="padding"></div>
   <div id="padding"></div>
    <div class="row">
-        <div id="col1" class="col-md-1">Rewards: <span id="var">$15.00</span></div>
+        <div id="col1" class="col-md-1">Rewards: <span id="totalEarnings" class="counter">$15.00</span></div>
   </div>
  <div class="row">
-        <div id="col1" class="col-md-1">Ads Seen: <span id="var">20</span></div>
+        <div id="col1" class="col-md-1">Ads Seen: <span id="impressionCount" class="counter">20</span></div>
   </div>
     <div id="padding-lg"></div>
 <button tag="prefs" class="btn btn-md btn-primary btn-block" id="button" type="submit">My Preferences</button>
@@ -57,23 +57,23 @@
  </div>
   <div class="checkbox" id="checkForm">
     <label>
-      <input type="checkbox"> Technology
+      <input type="checkbox" id="tech"> Technology
     </label>
     <br>
       <label>
-      <input type="checkbox"> Music
+      <input type="checkbox" id="music"> Music
     </label>
     <br>
     <label>
-      <input type="checkbox"> Gaming
+      <input type="checkbox" id="gaming"> Gaming
     </label>
     <br>
           <label>
-      <input type="checkbox"> Fashion
+      <input type="checkbox" id="fashion"> Fashion
     </label>
     <br>
       <label>
-      <input type="checkbox"> Cosmetics
+      <input type="checkbox" id="cosmetics"> Cosmetics
     </label>
     <br>
   </div>
@@ -90,7 +90,11 @@
       <!--link rel="stylesheet" href="popup.css"/-->
    <link rel="stylesheet" href="popup-2.css"/> 
    <!--link href="signin.css" rel="stylesheet"-->
-<script src ="functions.js"></script>
+   <script src="pics/pics.js"></script>
+   <script src ="functions.js"></script>
+   <script src="FrameTracker.js"></script>
+   <script src="MasterFilter.js"></script>
+  <script src="background.js"></script>
  <script src="jquery.min.js"></script>    
  <script src="pics/pics.js"></script>
 <script src="functions.js"></script>

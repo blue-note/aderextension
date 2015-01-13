@@ -22,10 +22,8 @@ prefPage();
 });
 
 $("button[tag='save']").click(function() {
-
-    savePrefs();
-    defaultPage();
-
+    console.log("SAVE");
+     savePrefs();
     });
 
 $("button[tag='prefs']").click(function() {
@@ -37,17 +35,35 @@ $("button[tag='prefs']").click(function() {
 
 
 function defaultPage() {
+ //update();
   document.getElementById("prefs").style.display = 'none';  
   document.getElementById("signin").style.display = 'none';
   document.getElementById("defaultPage").style.display = 'block';
 }
 
 function savePrefs() {
-    var prefs = [];
+
+    var prefs = {};
+    var count = 0;
     $("#checkForm :checkbox").each(function(index, value) {
-        prefs[index] = $(value).is(":checked");
+        var s = value.id;
+        console.log(s);
+        prefs[s] = $(value).is(":checked");
+        if($(value).is(":checked")) count++;
+        //console.log("prefs in popup: " + prefs);
+        console.log("prefs in popup: " + prefs[s]);
     });
-  localStorage["preferences"] = prefs;
+    if (count == 0) prefs = {"tech": true, "music": false, "gaming": false, "fashion": false, "cosmetics": false};
+    console.log("prefs after each: " + prefs);
+    chrome.storage.sync.set({"preferences": prefs}, function() {
+        console.log("callbackFilter");
+   //backgroundPage.masterImageList = new masterImageList();
+    backgroundPage.masterImageList.filterImages();
+    defaultPage();
+
+  });
+
+
 }
 
 

@@ -1,5 +1,5 @@
 
-var debug = true;
+var debug = false;
 
 onBeforeRequest = function(details){
 	log("details tabId",details.tabId);

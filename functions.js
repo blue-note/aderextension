@@ -301,29 +301,42 @@ this.hugeArray = [];
 //area > 1,000,000
 };
 
+
 MasterImageList.prototype = 
 {
   filterImages: function() { 
-      array_of_images=returnImages();
-      //console.log("hey " + array_of_images);
-      for (index = 0; index < array_of_images.length; index++) {  
+    var that = this;
+    this.smallArray = [];
+  //not in big or huge
+  this.bigArray = [];
+  //bigger than 40,000px area, less than 1,000,000
+  this.wideArray = [];
+  //width/height >= 2
+  this.tallArray = [];
+  //height/width >= 2
+  this.hugeArray = [];
+  //area > 1,000,000
+      /*array_of_images=*/returnImages(function(array_of_images) {
+            for (index = 0; index < array_of_images.length; index++) {  
           var current_object=array_of_images[index];  
           var ratio=current_object.width/current_object.height;
           var invertedRatio=current_object.height/current_object.width;
           //log("obj url",current_object.url);
           //log("obj width",current_object.width);
           //log("obj height", current_object.height);
-          if (invertedRatio>=2) this.tallArray.push(current_object);
-          if(ratio >=2) this.wideArray.push(current_object);
+          if (invertedRatio>=2) that.tallArray.push(current_object);
+          if(ratio >=2) that.wideArray.push(current_object);
           if(current_object.width*current_object.height>=1000000)
-          this.hugeArray.push(current_object); 
+          that.hugeArray.push(current_object); 
           if(current_object.width*current_object.height>=40000 && current_object.width*current_object.height<1000000) {
-          this.bigArray.push(current_object);
+          that.bigArray.push(current_object);
                       }
-          else {this.smallArray.push(current_object);}
+          else {that.smallArray.push(current_object);}
           
       } 
-     //console.log(array_of_images); 
+
+      });
+
 
   },
 
