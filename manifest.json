@@ -34,7 +34,7 @@
       "all_frames": true
     }
   ],
-  "content_security_policy": "default-src https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js; style-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src *; img-src *; frame-src 'self' ",
+  "content_security_policy": "default-src 'self' https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js 'unsafe-inline'; style-src http://fonts.googleapis.com/css?family=Raleway 'self' 'unsafe-inline' 'unsafe-eval'; connect-src *; img-src *; frame-src 'self' ",
   "description": "Ader: it really is all about you",
   "icons": {
     "16": "browserIcon.png",

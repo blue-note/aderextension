@@ -10,14 +10,17 @@
   -moz-box-shadow: none;
   box-shadow: none;
 text-align: center;
+padding-left: 35px;
 
 }
 
 #prefs .checkbox {
 text-align: left;
+padding-left: 10px;
+
 }
 
-form {
+.container {
   width: 200px;
 }
 
@@ -145,6 +148,8 @@ border-color: #39B54A;
 -webkit-box-shadow: none !important;
 -moz-box-shadow: none !important;
   box-shadow: none !important;
+ 
+
 }
 
 
@@ -152,9 +157,14 @@ border-color: #39B54A;
   padding-top: 10px;
 }
 
+#padding-lg {
+  padding-top: 40px;
+}
+
 #defaultPage .col-md-1 {
   padding-left: 20% !important;
 }
+
 
 #col1 {
   padding-left: 20% !important;

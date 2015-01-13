@@ -1,28 +1,12 @@
 var backgroundPage = chrome.extension.getBackgroundPage();
 
 $(document).ready(function() {
-$("#prefs").submit(function() {
+$("form").each(function(index, value) {
+    $(value).submit(function() {
     return false;
-
+});
 });
 
-//createAccount("janita", "janitaPassword");
-//initialize();  
-//update();
-
-initPage();
-//generateButtons();
- //setTimeout(update(),50);      
-});
-
-
-function defaultPage() {
-  document.getElementById("prefs").style.display = 'none';  
-  document.getElementById("signin").style.display = 'none';
-  document.getElementById("defaultPage").style.display = 'block';
-}
-
-function initPage() {
 $("button[tag='account']").click(function() {
 
 //this function should get input form data and console log it
@@ -38,24 +22,42 @@ prefPage();
 });
 
 $("button[tag='save']").click(function() {
+
+    savePrefs();
     defaultPage();
 
     });
 
+
+$("button[tag='prefs']").click(function() {
+    prefPage();
+
+    });
+
+
+     
+});
+
+
+function defaultPage() {
+  document.getElementById("prefs").style.display = 'none';  
+  document.getElementById("signin").style.display = 'none';
+  document.getElementById("defaultPage").style.display = 'block';
 }
+
+function savePrefs() {
+    var prefs = [];
+    $("#checkForm :checkbox").each(function(index, value) {
+        prefs[index] = $(value).is(":checked");
+    });
+  localStorage["preferences"] = prefs;
+}
+
 
 function prefPage() {
 document.getElementById("signin").style.display = 'none';
 document.getElementById("prefs").style.display = 'block'; 
-//document.getElementById("accountButton").style.display = 'none';
-//generateButtons();
-
-var elements = document.getElementsByClassName("");
-console.log("grid elements: " + elements);
-for (el in elements) {
-    el.innerHTML = "grid element";
-    console.log("inner HTML" + el.innerHTML);
-}
+document.getElementById("defaultPage").style.display = 'none';
 }
 
 
