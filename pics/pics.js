@@ -77,7 +77,9 @@ returnImages = function(){
   // returns array of imageobjects matching preferences saved in local storage
   // technology, music, gaming, fashion, cosmetics,
   const interests = ["tech","music","gaming","fashion","cosmetics"];
-  var options = [true,false,false,false,false];
+  var optionsTest = [true,false,false,false,false];
+  var options = optionsTest;
+  if(undefined != localStorage["preferences"]) options = localStorage["preferences"];
   // imageArray has all images that exist
   var fuzeArray = [];
   for(i = 0; i < options.length; i++){
