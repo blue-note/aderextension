@@ -155,13 +155,7 @@ function flipPause() {
 function saveAdPref(pref) {
     
 //ads to array of prefs in local storage
-   chrome.storage.sync.get(["preferences"], function(data) {
-       prefs = data.preferences;
-       prefs.push(pref);
-       chrome.storage.sync.set({"preferences":prefs}, function() {
-          master.filterPrefs();
-     });        
-    });
+   localStorage["preferences"] = pref;
     
 
 }

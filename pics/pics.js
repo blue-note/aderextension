@@ -1,18 +1,18 @@
 //initial files 
 
 
-function imgObj(filename, width, length, interest) {
-    this.src = chrome.extension.getURL("pics/"+interest+"/"+filename);
+function imgObj(filename, width, length, preference) {
+    this.src = chrome.extension.getURL("pics/"+preference+"/"+filename);
     this.width = width;
     this.height = length;
     this.name = filename;
-    this.interest = interest;
+    this.preference = preference;
 
     toImage = function(){
       var image = new Image().src = url;
       image.dataset.ader = true;
       image.dataset.name = this.filename;
-      image.dataset.interest = this.interest; 
+      image.dataset.preference = this.preference; 
       return (image);}
     }
 
@@ -74,7 +74,23 @@ var imageArray = [
 */
 
 returnImages = function(){
-    return imageArray;
+  // returns array of imageobjects matching preferences saved in local storage
+  // technology, music, gaming, fashion, cosmetics,
+  const interests = ["tech","music","gaming","fashion","cosmetics"];
+  var options = [true,false,false,false,false];
+  // imageArray has all images that exist
+  var fuzeArray = [];
+  for(i = 0; i < options.length; i++){
+    if(options[i]){
+      for(j = 0; j < imageArray.length; j++){
+        if(imageArray[j].preference == interests[i])
+          fuzeArray.push(imageArray[j]);
+      }
+    }
+  }
+
+
+    return fuzeArray; //imageArray
     
 };
 
