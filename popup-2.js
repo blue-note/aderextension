@@ -28,14 +28,11 @@ $("button[tag='save']").click(function() {
 
     });
 
-
 $("button[tag='prefs']").click(function() {
     prefPage();
 
     });
-
-
-     
+   
 });
 
 
@@ -114,36 +111,3 @@ function update() {
     */
 }
 
-
-
-function generateButtons() {
-    createRadioElement("fashion");
-    createRadioElement("cosmetics");
-    createRadioElement("music");
-    
-}
-
-
-function createRadioElement(name) {
-    var radioHtml = '<input type="radio" name="' + name + '"';
-    radioHtml += '/> ' + name + '<br>';
-    
-    var radioFragment = document.createElement('div');
-    radioFragment.setAttribute("name",name);
-    radioFragment.setAttribute("checked","false");
-
-    
-    radioFragment.innerHTML = radioHtml;
-    radioFragment.addEventListener("click", function() {
-        var pref = radioFragment.getAttribute("name");
-        saveAdPref(pref);
-    });
-    
-    document.body.appendChild(radioFragment);
-    //return radioFragment.firstChild;
-    
-
-
-   
-    
-}
