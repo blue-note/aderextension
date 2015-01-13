@@ -443,6 +443,8 @@ MasterImageList.prototype =
    var small = !big;
    var wide = (width / height) >= 2;
    var tall = (height / width) >= 2;
+
+   // huge  wide  tall  big  small 
    
    if(huge){
        return (this.findClosest(this.hugeArray,pixels));}
@@ -459,28 +461,38 @@ MasterImageList.prototype =
        return (this.findClosest(this.smallArray,pixels));}
   },
 
-   findClosest: function (imageArray, pixels) {
+   findClosest: function (imageArray, pixels) { // finds group within a range. //returns random 1; 0 - length
+      const range = 700;
       var min = 0;
       var max = imageArray.length;
       var length = max - min;
+      var objectsInRange = [];
       var closestObj = {};
       var closestDist = Infinity;
       log("image length",imageArray.length);
 
       for (var i = 0; i < imageArray.length; i++) {
           var obj = imageArray[i];
-          if(Math.abs(obj.width*obj.height - pixels) < closestDist) {
+          var dist = Math.abs(obj.width*obj.height - pixels);
+          
+          if(dist <= range){
+            objectsInRange.push(obj);
+            if(dist < closestDist) {
               log("obj",obj);
               closestObj = obj;
               closestDist = Math.abs(obj.width*obj.height - pixels);
+            }
           }
           
-          
       }
+
+      var pick = Math.max(0,Math.floor(objectsInRange.length * Math.random() - .1));
+
+      
       //var x = document.createElement("img");
       //x.src = closestObj.src;
       //console.log(x);
-      return closestObj; 
+      return objectsInRange[pick]; 
   },
 
   filterPrefs: function() {
