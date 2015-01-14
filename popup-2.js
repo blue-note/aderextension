@@ -1,6 +1,8 @@
 var backgroundPage = chrome.extension.getBackgroundPage();
 
 $(document).ready(function() {
+
+initialize();
 $("form").each(function(index, value) {
     $(value).submit(function() {
     return false;
@@ -35,7 +37,7 @@ $("button[tag='prefs']").click(function() {
 
 
 function defaultPage() {
- //update();
+ update();
   document.getElementById("prefs").style.display = 'none';  
   document.getElementById("signin").style.display = 'none';
   document.getElementById("defaultPage").style.display = 'block';
@@ -75,13 +77,22 @@ document.getElementById("defaultPage").style.display = 'none';
 
 
 function initialize() {
-    //if(null == localStorage["initialized"])
       // {
-    chrome.storage.sync.set({"sumImpressions":0});
-    chrome.storage.sync.set({"preferences":["technology"]}, function() {
+
+    chrome.storage.sync.get("sumImpressions", function(data) {
+        if (undefine(data.sumImpressions)) {
+        chrome.storage.sync.set({"sumImpressions":"0"});
+        }
     });
-    initPics();
+
+
    // }
+}
+
+function getImpressions() {
+    chrome.storage.sync.get("sumImpressions", function(data) {
+        console.log(data);    
+    });
 }
 
 Number.prototype.toFixedDown = function(digits) {
@@ -92,30 +103,17 @@ Number.prototype.toFixedDown = function(digits) {
 
 
 function update() { 
-    //NEED TO UPDATE TO THIS VERSION: NO MASTER OBJECT
-    /*
-    {
-    master.filterImages();
-   // master.filterPrefs();
-   //for testing
-    var object1={height:'53000',width:'1'};
-    var object2={height:'60000',width:'1'};
-    var object3={height:'45000',width:'1'};
-    var array_of_images=[object1,object2,object3];
-    master.filterImages(array_of_images);
-    master.sortSmall();
-    }
-    */
+
     incrementImpressions(4);
     chrome.storage.sync.get(["sumImpressions"], function(data) {
-        document.getElementById("impressionCount").innerHTML += " "+ data.sumImpressions;
+        document.getElementById("impressionCount").innerHTML = data.sumImpressions;
         
     });
     
     calculateEarnings();
     
      chrome.storage.sync.get(["sumEarnings"], function(data) {
-        document.getElementById("totalEarnings").innerHTML += " "+"$"+     data.sumEarnings.toFixedDown(2);
+        document.getElementById("totalEarnings").innerHTML = "$" + data.sumEarnings.toFixedDown(2);
         
     });
     

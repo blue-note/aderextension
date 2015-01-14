@@ -115,7 +115,7 @@ function createAccount(email, password) {
     //initializing local storage attributes
   chrome.storage.sync.set({"adCounter":"0"}); 
   chrome.storage.sync.set({"isPaused":"false"});
-  chrome.storage.sync.set({"sumImpressions":"0"});
+  //chrome.storage.sync.set({"sumImpressions":"0"});
   chrome.storage.sync.set({"sumEarnings":"0"});
 }
 
@@ -257,7 +257,7 @@ function retrieveAds() {
        }
        
        //need to post these to popup
-       incrementImpressions(1);
+       //incrementImpressions(1);
        calculateEarnings();
    }
     
@@ -325,10 +325,10 @@ MasterImageList.prototype =
           //log("obj width",current_object.width);
           //log("obj height", current_object.height);
           if (invertedRatio>=2) that.tallArray.push(current_object);
-          if(ratio >=2) that.wideArray.push(current_object);
-          if(current_object.width*current_object.height>=1000000)
+          else if(ratio >=2) that.wideArray.push(current_object);
+          else if(current_object.width*current_object.height>=1000000)
           that.hugeArray.push(current_object); 
-          if(current_object.width*current_object.height>=40000 && current_object.width*current_object.height<1000000) {
+          else if(current_object.width*current_object.height>=40000 && current_object.width*current_object.height<1000000) {
           that.bigArray.push(current_object);
                       }
           else {that.smallArray.push(current_object);}
@@ -462,7 +462,8 @@ MasterImageList.prototype =
   },
 
    findClosest: function (imageArray, pixels) { // finds group within a range. //returns random 1; 0 - length
-      const range = 700;
+      const rangeOne = 0.5;
+      const rangeTwo = 2;
       var min = 0;
       var max = imageArray.length;
       var length = max - min;
@@ -473,14 +474,14 @@ MasterImageList.prototype =
 
       for (var i = 0; i < imageArray.length; i++) {
           var obj = imageArray[i];
-          var dist = Math.abs(obj.width*obj.height - pixels);
+          var dist = obj.width*obj.height/pixels;
           
-          if(dist <= range){
+          if(dist >= rangeOne && dist <= rangeTwo){
             objectsInRange.push(obj);
             if(dist < closestDist) {
               log("obj",obj);
               closestObj = obj;
-              closestDist = Math.abs(obj.width*obj.height - pixels);
+              closestDist = dist;
             }
           }
           
