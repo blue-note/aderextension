@@ -46,8 +46,10 @@ aim = function(details){
 		chrome.runtime.sendMessage(extensionID,message,function(imgObj){
 			if(imgObj)
 			{
-				console.log("response: ");
-				console.log(imgObj.name);
+				//console.log("yup");
+				//console.log("response: ");
+				console.log(imgObj.name); //ps3 here but can't get in
+				console.log(document.location.href);
 				log("response came back",imgObj.width + " "+ imgObj.height);
 				insert(el,size,imgObj);
 			}

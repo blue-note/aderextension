@@ -75,6 +75,7 @@ elementHandler = function(message, sender, response){
 	var height = size["height"];
 	log("from aim","success");
 	var imgObj = masterImageList.findBest(width,height);
+	if(undefine(imgObj))return;
 	log("img width",imgObj.width);
 	response(imgObj);
 
