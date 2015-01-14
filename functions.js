@@ -438,6 +438,7 @@ MasterImageList.prototype =
       height = 200;
     }
    var pixels = width * height;
+   var pixelRatio = width/height;
    var huge = pixels > 1000000;
    var big = pixels >= 40000;
    var small = !big;
@@ -474,15 +475,16 @@ MasterImageList.prototype =
 
       for (var i = 0; i < imageArray.length; i++) {
           var obj = imageArray[i];
-          var dist = obj.width*obj.height/pixels;
-          
-          if(dist >= rangeOne && dist <= rangeTwo){
+          var areaRatio = (obj.width * obj.height)/pixels;
+
+          if(areaRatio >= rangeOne && areaRatio <= rangeTwo){
             objectsInRange.push(obj);
-            if(dist < closestDist) {
-              log("obj",obj);
+            /*if(dist < closestDist) {
+              /*log("obj",obj);
               closestObj = obj;
               closestDist = dist;
-            }
+              
+            } */
           }
           
       }
