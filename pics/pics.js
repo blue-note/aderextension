@@ -187,7 +187,7 @@ var imageArray = [
 
 */
 
-returnImages = function(callback){
+returnImages = function(callback) {
   // returns array of imageobjects matching preferences saved in local storage
   // technology, music, gaming, fashion, cosmetics,
   const interests = ["tech","music","gaming","fashion","cosmetics"];
@@ -198,6 +198,8 @@ returnImages = function(callback){
     console.log("CALLBACK");
     storagePrefs = data["preferences"];  
     var options = storagePrefs;
+    if (undefine(data.preferences)) 
+      options = {"tech": true, "music": true, "gaming": true, "fashion": true, "cosmetics": true};
     callback(each(options));
   });
   /*
