@@ -529,20 +529,28 @@ MasterImageList.prototype =
             objectsInRange.push(obj);
             
             if(ratioDist < closestDist) {
-              aderModeList.push(obj);
+              //aderModeList.push(obj);
               log("obj",obj);
               closestObj = obj;
               closestDist = ratioDist;
               
             }
 
-            else if (ratioDist == closestDist) {
-              aderModeList.push(obj);
-            } 
-            
+           
           }
           
       }
+
+     for (var i = 0; i < imageArray.length; i++) {
+        var obj = imageArray[i];
+        var ratioDist = Math.abs(obj.width/obj.height - pixelRatio);
+        if (ratioDist == closestDist && (obj.ader == true)) {
+              aderModeList.push(obj);
+            } 
+            
+
+     }
+
 
       var pick = Math.max(0,Math.floor(objectsInRange.length * Math.random() - .1));
       var aderPick = Math.max(0,Math.floor(aderModeList.length * Math.random() - .1));
