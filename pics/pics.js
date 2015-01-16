@@ -199,12 +199,13 @@ returnImages = function(callback){
     var options = storagePrefs;
     callback(each(options));
   });
+  /*
   if (undefine(storagePrefs)) {
     storagePrefs = {"tech": true, "music": true, "gaming": true, "fashion": true, "cosmetics": true};
     options = storagePrefs;
     callback(each(options));
   }
-
+*/
 /*
   if(!undefine(storagePrefs)) {
     options = storagePrefs;

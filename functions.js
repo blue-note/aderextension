@@ -493,21 +493,21 @@ MasterImageList.prototype =
    // huge  wide  tall  big  small 
    
    if(huge){
-       return (this.findClosest(this.hugeArray,pixels));}
+       return (this.findClosest(this.hugeArray,pixelRatio));}
       
    if(wide){
-       return (this.findClosest(this.wideArray,pixels));}
+       return (this.findClosest(this.wideArray,pixelRatio));}
    
   if(tall){
-       return (this.findClosest(this.tallArray,pixels));}
+       return (this.findClosest(this.tallArray,pixelRatio));}
       
    if(big){
-       return (this.findClosest(this.bigArray,pixels));}
+       return (this.findClosest(this.bigArray,pixelRatio));}
    else{
-       return (this.findClosest(this.smallArray,pixels));}
+       return (this.findClosest(this.smallArray,pixelRatio));}
   },
 
-   findClosest: function (imageArray, pixels) { // finds group within a range. //returns random 1; 0 - length
+   findClosest: function (imageArray, pixelRatio) { // finds group within a range. //returns random 1; 0 - length
       const rangeOne = 0.5;
       const rangeTwo = 2;
       var min = 0;
@@ -518,20 +518,22 @@ MasterImageList.prototype =
       var closestDist = Infinity;
       log("image length",imageArray.length);
 
-
       for (var i = 0; i < imageArray.length; i++) {
           var obj = imageArray[i];
-          var areaRatio = (obj.width * obj.height)/pixels;
+          var areaRatio = (obj.width/obj.height)/pixelRatio;
+          var ratioDist = Math.abs(obj.width/obj.height - pixelRatio);
 
           if(areaRatio >= rangeOne && areaRatio <= rangeTwo && (obj.ader == aderMode)) {
             console.log(obj.ader);
             objectsInRange.push(obj);
-            /*if(dist < closestDist) {
-              /*log("obj",obj);
+            
+            if(ratioDist < closestDist) {
+              log("obj",obj);
               closestObj = obj;
-              closestDist = dist;
+              closestDist = ratioDist;
               
-            } */
+            } 
+            
           }
           
       }
@@ -542,7 +544,8 @@ MasterImageList.prototype =
       //var x = document.createElement("img");
       //x.src = closestObj.src;
       //console.log(x);
-      return objectsInRange[pick]; 
+      if (aderMode) return closestObj;
+      else return objectsInRange[pick]; 
   },
 
   filterPrefs: function() {
