@@ -93,9 +93,9 @@ FrameTracker.prototype = {
 			return false;}
 
 	
-		if(typeof this[tabId][frameId] == 'undefined'){
+		if(typeof this[tabId][frameId] == 'undefined') {
 			this[tabId][frameId] = {};
-			//this[tabId][frameId].locked = false;
+			this[tabId][frameId].locked = false;
 		}
 
 				this[tabId][frameId] = 

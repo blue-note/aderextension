@@ -2,7 +2,6 @@
 debug = false;
 extensionID = chrome.runtime.id;
 
-
 takeAim = function(message,sender){
 	if(message.command != "aim")
 		return; // not us
@@ -39,6 +38,8 @@ aim = function(details){
 	var size = getSize(el);
 	message.size = size;
 	message.command = "image";
+	message.tabId = details.tabId;
+	message.frameId = details.frameId;
 	//var result = {size:s, element:el}
 	shrink(el);
 	if(undefined != size){
@@ -48,10 +49,10 @@ aim = function(details){
 			{
 				//console.log("yup");
 				//console.log("response: ");
-				console.log(imgObj.name); //ps3 here but can't get in
-				console.log(document.location.href);
+				//console.log(imgObj.name); //ps3 here but can't get in
+				//console.log(document.location.href);
 				log("response came back",imgObj.width + " "+ imgObj.height);
-				insert(el,size,imgObj);
+				insert(el,size,imgObj, details);
 			}
 	});
 }
@@ -131,7 +132,8 @@ shrinkByParent = function (el){
 
 };
 
-insert = function(el,size,imgObj){
+insert = function(el,size,imgObj, details) {
+
 	var pic = document.createElement("img");
 	pic.src = imgObj.src;
 	pic.classList = "ader";
@@ -151,15 +153,44 @@ insert = function(el,size,imgObj){
 
     for (var i in css) {
       pic.style[i] = css[i];
+   	  //console.log(i + ": " + pic.style[i]);
     }
+
 
     for (var k in {position:1,left:1,top:1,bottom:1,right:1}) {
       pic.style[k] = window.getComputedStyle(el)[k];
-      log(k,pic.style[k])
+      //console.log(k + ": " + pic.style[k]);
+      log(k,pic.style[k]);
     }
+
     pic.style["display"] = el.dataset.display;
     pic.style["visibility"] = el.dataset.visibility;
     pic.style["opacity"] = el.dataset.opacity;
+    if ((pic.style["display"] != 'none') && !details.frameExist)  {
+    	chrome.runtime.sendMessage(extensionID, {command: "impressions"});
+    	//incrementImpressions(1);
+    	/*
+    	chrome.runtime.sendMessage(extensionID, {command:"impressions"}, function(first, num) {
+    		//if (first)
+    		console.log("callback: " + num);
+    		console.log()
+    		 incrementImpressions(num);
+    	});
+*/
+    	//chrome.storage.sync.get("sumImpressions", function(data) {
+        //console.log("impression: " + data.sumImpressions);
+   
+   // });
+    	//console.log("impression: " + pic.src);
+    	
+    	/*console.log("frameID: " + details.frameId);
+    	console.log("position: " + pic.style["position"]);
+    	console.log("DISPLAY: " + pic.style["display"]);
+    	console.log("WIDTH: " + pic.style["width"]);
+    	console.log("HEIGHT: " + pic.style["height"]);
+    	*/
+    }
+
 
     el.parentNode.insertBefore(pic, el);
     log("insert","end");

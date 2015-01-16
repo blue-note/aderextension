@@ -1,5 +1,8 @@
-
 var debug = false;
+var frameList = {};
+var impressionCount = 0;
+//impressionCount = getImpressions();
+
 
 onBeforeRequest = function(details){
 	log("details tabId",details.tabId);
@@ -26,7 +29,7 @@ onBeforeRequest = function(details){
 	log("block",blocked);
 
 	if(blocked && ((t == "image") || (t == "object") || (t == "sub_frame") || (t == "other"))) { //if entry doesn't exist, blocked should be false
-
+		var locked = master.frameTracker[tabId][frameId].locked;
 		
 		log("blocking",t);
 		//if(t == "script" || t == "stylesheet" || t == "other"){
@@ -52,8 +55,9 @@ onBeforeRequest = function(details){
 		
 		
 		log("parentUrl",parentUrl);
+		frameList[frameId] = !(undefine(frameList[frameId]));
 		var message = {command:"aim",url:details.url,parent:parentUrl,type:details.type, 
-						getParent:needParent, tabId: tabId, frameId: frameId};
+						getParent:needParent, tabId: tabId, frameId: frameId, frameExist:frameList[frameId]};
 		log("tabId",tabId);
 		log("frameId",frameId);
 
@@ -77,22 +81,38 @@ elementHandler = function(message, sender, response){
 	var imgObj = masterImageList.findBest(width,height);
 	if(undefine(imgObj))return;
 	log("img width",imgObj.width);
+	var locked = master.frameTracker[message.tabId][message.frameId].locked;
+	/*if (!locked) {
+		incrementImpressions(1);
+		console.log("impression: " + imgObj.name);
+		master.frameTracker[message.tabId][message.frameId].locked = true;
+	}
+	*/
 	response(imgObj);
 
 
 };
 
+function impressions(message, sender, response) {
+if (message.command != "impressions") return;
+//incrementImpressions(1);
+console.log("impressionCount: " + impressionCount);
+setImpressions(impressionCount++);
+/*
+console.log("impressionCount: " + impressionCount);
+var first = (impressionCount == 1);
+console.log("impressions called");
+response(first, impressionCount);
+*/
 
-
-
-
-
+}
 
 var master = new MasterFilter();
 var masterImageList = new MasterImageList();
 masterImageList.filterImages();
 chrome.webRequest.onBeforeRequest.addListener(onBeforeRequest, {urls: ["http://*/*", "https://*/*"]}, ["blocking"]);
 chrome.runtime.onMessage.addListener(elementHandler);
+chrome.runtime.onMessage.addListener(impressions);
 
 
 

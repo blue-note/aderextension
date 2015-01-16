@@ -1,12 +1,13 @@
 //initial files 
 
 
-function imgObj(filename, width, length, preference) {
+function imgObj(filename, width, length, preference, ader) {
     this.src = chrome.extension.getURL("pics/"+preference+"/"+filename);
     this.width = width;
     this.height = length;
     this.name = filename;
     this.preference = preference;
+    this.ader = ader || false;
 
     toImage = function(){
       var image = new Image().src = url;
@@ -60,12 +61,107 @@ var imageArray = [new imgObj("Beyonce160x600.jpg", 160, 600, m),
                   new imgObj("shave.jpg", 300, 250, "mis"),
                   new imgObj("toxinfree.jpg", 160, 600, c),
                   new imgObj("revlon.jpg", 2473, 3289, c),
+                  
 new imgObj("tennis.jpg", 300, 600, "mis"),
 new imgObj("staples.jpg", 600, 267, "mis"),
 new imgObj("priceline.jpg", 595, 165, "mis"),
 new imgObj("studyabroad.jpg", 710, 150, "mis"),
 new imgObj("office.jpg", 800,229, "mis"),
-                  new imgObj("note.png", 500, 500, m)];
+new imgObj("cosmetics-120x240.png", 120,240, c,true),
+new imgObj("cosmetics-120x60.png", 120, 60, c,true),
+new imgObj("cosmetics-120x600.png", 120, 600, c,true),
+new imgObj("cosmetics-120x90.png", 120, 90, c,true),
+new imgObj("cosmetics-125x125.png", 125, 125, c,true),
+new imgObj("cosmetics-160x600.png", 160, 600, c,true),
+new imgObj("cosmetics-180x215.png", 180, 215, c,true),
+new imgObj("cosmetics-234x60.png", 234, 60, c,true),
+new imgObj("cosmetics-240x400.png", 240, 400, c,true),
+new imgObj("cosmetics-250x250.png", 250, 250, c,true),
+new imgObj("cosmetics-300x100.png", 300, 100, c,true),
+new imgObj("cosmetics-300x600.png", 300, 600, c,true),
+new imgObj("cosmetics-336x280.png", 336, 280, c,true),
+new imgObj("cosmetics-468x60.png", 468, 60, c,true),
+new imgObj("cosmetics-720x300.png", 720, 300, c, true),
+new imgObj("cosmetics-728x90.png", 728, 90, c,true),
+new imgObj("cosmetics-88x31.png", 88, 31, c,true),
+
+new imgObj("fashion-120x240.png", 120, 240, f, true),
+new imgObj("fashion-120x60.png", 120, 60, f, true),
+new imgObj("fashion-120x600.png", 120, 600, f, true),
+new imgObj("fashion-120x90.png", 120, 90, f, true),
+new imgObj("fashion-125x125.png",125, 125, f, true),
+new imgObj("fashion-160x600.png",160, 600, f, true),
+new imgObj("fashion-180x150.png",180, 150, f, true),
+new imgObj("fashion-234x60.png",234, 60, f, true),
+new imgObj("fashion-240x400.png",240, 400, f, true),
+new imgObj("fashion-250x250.png",250, 250, f, true),
+new imgObj("fashion-300x100.png",300, 100, f, true),
+new imgObj("fashion-300x250.png",300, 250, f, true),
+new imgObj("fashion-300x600.png",300, 600, f, true),
+new imgObj("fashion-336x280.png",336, 280, f, true),
+new imgObj("fashion-468x60.png",468, 60, f, true),
+new imgObj("fashion-720x300.png",720, 300, f, true),
+new imgObj("fashion-728x90.png",728, 90, f, true),
+new imgObj("fashion-88x31.png",88, 31, f, true),
+
+new imgObj("music-120x240.png", 120,240,m, true),
+new imgObj("music-120x60.png", 120,60,m, true),
+new imgObj("music-120x600.png", 120,600,m, true),
+new imgObj("music-120x90.png", 120,90,m, true),
+new imgObj("music-125x125.png", 125,125,m, true),
+new imgObj("music-160x600.png", 160,600,m, true),
+new imgObj("music-180x150.png", 180,150,m, true),
+new imgObj("music-234x60.png", 234,60,m, true),
+new imgObj("music-240x400.png", 240,400,m, true),
+new imgObj("music-250x250.png", 250,250,m, true),
+new imgObj("music-300x100.png", 300,100,m, true),
+new imgObj("music-300x250.png", 300,250,m, true),
+new imgObj("music-300x600.png", 300,600,m, true),
+new imgObj("music-336x280.png", 336,280,m, true),
+new imgObj("music-468x60.png", 468,60,m, true),
+new imgObj("music-720x300.png", 720,300,m, true),
+new imgObj("music-728x90.png", 728,90,m, true),
+new imgObj("music-88x31.png", 88,31,m, true),
+
+new imgObj("tech-88x31.png", 88,31,t, true),
+new imgObj("tech-120x60.png", 120,60,t, true),
+new imgObj("tech-120x90.png", 120,90,t, true),
+new imgObj("tech-120x240.png", 120,240,t, true),
+new imgObj("tech-120x600.png", 120,600,t, true),
+new imgObj("tech-125x125.png", 125,125,t, true),
+new imgObj("tech-160x600.png", 160,600,t, true),
+new imgObj("tech-180x150.png", 180,150,t, true),
+new imgObj("tech-234x60.png", 234,60,t, true),
+new imgObj("tech-240x400.png", 240,400,t, true),
+new imgObj("tech-250x250.png", 250,250,t, true),
+new imgObj("tech-300x100.png", 300,100,t, true),
+new imgObj("tech-300x250.png", 300,250,t, true),
+new imgObj("tech-300x600.png", 300,600,t, true),
+new imgObj("tech-336x280.png", 336,280,t, true),
+new imgObj("tech-468x60.png", 468,60,t, true),
+new imgObj("tech-720x300.png", 720,300,t, true),
+new imgObj("tech-728x90.png", 728,90,t, true),
+
+new imgObj("gaming-120x240.png", 120,240,g, true),
+new imgObj("gaming-120x60.png", 120,60,g, true),
+new imgObj("gaming-120x600.png", 120,600,g, true),
+new imgObj("gaming-120x90.png", 120,90,g, true),
+new imgObj("gaming-125x125.png", 125,125,g, true),
+new imgObj("gaming-160x600.png", 160,600,g, true),
+new imgObj("gaming-180x150.png", 180,150,g, true),
+new imgObj("gaming-234x60.png", 234,60,g, true),
+new imgObj("gaming-240x400.png", 240,400,g, true),
+new imgObj("gaming-250x250.png", 250,250,g, true),
+new imgObj("gaming-300x100.png", 300,100,g, true),
+new imgObj("gaming-300x250.png", 300,250,g, true),
+new imgObj("gaming-300x600.png", 300,600,g, true),
+new imgObj("gaming-336x280.png", 336,280,g, true),
+new imgObj("gaming-468x60.png", 468,60,g, true),
+new imgObj("gaming-720x300.png", 720,300,g, true),
+new imgObj("gaming-728x90.png", 728,90,g, true),
+new imgObj("gaming-88x31.png", 88,31,g, true),
+
+new imgObj("note.png", 500, 500, m, false)];
                   
 
 /*
@@ -103,7 +199,12 @@ returnImages = function(callback){
     var options = storagePrefs;
     callback(each(options));
   });
-  
+  if (undefine(storagePrefs)) {
+    storagePrefs = {"tech": true, "music": true, "gaming": true, "fashion": true, "cosmetics": true};
+    options = storagePrefs;
+    callback(each(options));
+  }
+
 /*
   if(!undefine(storagePrefs)) {
     options = storagePrefs;
@@ -120,6 +221,7 @@ function each(options) {
       for(j = 0; j < imageArray.length; j++){
         //console.log(imageArray[j].preference);
         if(imageArray[j].preference == index) {
+          console.log("pic: " + imageArray[j].name);
           fuzeArray.push(imageArray[j]);
 
         }

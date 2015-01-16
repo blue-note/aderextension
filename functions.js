@@ -1,6 +1,6 @@
 var serverURL = "http://ader.klgilbert.com/";
 var devServerURL = "http://localhost:9000/";
-
+var aderMode = true;
 
 
 VERBOSE_DEBUG = true;
@@ -192,16 +192,61 @@ function downloadAds() {
  
 
 function incrementImpressions(num) {  
+    /*
+
     var newImpressions;
     chrome.storage.sync.get(["sumImpressions"], function(data) {
+        console.log("get");
         var currImpressions = data.sumImpressions;
         newImpressions = parseInt(currImpressions) + num;
     chrome.storage.sync.set({"sumImpressions":newImpressions}, function() { 
+    console.log('set');
+    console.log("newImpressions: " + newImpressions);
     calculateEarnings();        
     });
     });
+
+    */
+
+    var newImpressions;
+    var currImpressions;
+    chrome.storage.sync.get(["sumImpressions"], function(data) {
+        console.log("get");
+        currImpressions = data.sumImpressions;
+        console.log("current: " + currImpressions);
+        newImpressions = parseInt(currImpressions) + num;
+    });
+
+    chrome.storage.sync.set({"sumImpressions":newImpressions}, function() { 
+    console.log('set');
+    console.log("newImpressions: " + newImpressions);
+    calculateEarnings();        
+    });
+  
     
 }
+
+function getImpressions() {
+    chrome.storage.sync.get(["sumImpressions"], function(data) {
+        console.log("in get: " + data.sumImpressions);
+       return data.sumImpressions;
+    });
+
+}
+
+
+
+function setImpressions(num) {
+chrome.storage.sync.set({"sumImpressions":num}, function() { 
+    console.log("in set: " + num);
+    calculateEarnings();        
+    });
+
+}
+
+
+
+
 
 function calculateEarnings() {
     chrome.storage.sync.get(["sumImpressions"], function(data) {
@@ -473,11 +518,13 @@ MasterImageList.prototype =
       var closestDist = Infinity;
       log("image length",imageArray.length);
 
+
       for (var i = 0; i < imageArray.length; i++) {
           var obj = imageArray[i];
           var areaRatio = (obj.width * obj.height)/pixels;
 
-          if(areaRatio >= rangeOne && areaRatio <= rangeTwo){
+          if(areaRatio >= rangeOne && areaRatio <= rangeTwo && (obj.ader == aderMode)) {
+            console.log(obj.ader);
             objectsInRange.push(obj);
             /*if(dist < closestDist) {
               /*log("obj",obj);

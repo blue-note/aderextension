@@ -104,7 +104,7 @@ Number.prototype.toFixedDown = function(digits) {
 
 function update() { 
 
-    incrementImpressions(4);
+    //incrementImpressions(4);
     chrome.storage.sync.get(["sumImpressions"], function(data) {
         document.getElementById("impressionCount").innerHTML = data.sumImpressions;
         
