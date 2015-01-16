@@ -516,6 +516,7 @@ MasterImageList.prototype =
       var objectsInRange = [];
       var closestObj = {};
       var closestDist = Infinity;
+      var aderModeList = [];
       log("image length",imageArray.length);
 
       for (var i = 0; i < imageArray.length; i++) {
@@ -528,10 +529,15 @@ MasterImageList.prototype =
             objectsInRange.push(obj);
             
             if(ratioDist < closestDist) {
+              aderModeList.push(obj);
               log("obj",obj);
               closestObj = obj;
               closestDist = ratioDist;
               
+            }
+
+            else if (ratioDist == closestDist) {
+              aderModeList.push(obj);
             } 
             
           }
@@ -539,12 +545,13 @@ MasterImageList.prototype =
       }
 
       var pick = Math.max(0,Math.floor(objectsInRange.length * Math.random() - .1));
+      var aderPick = Math.max(0,Math.floor(aderModeList.length * Math.random() - .1));
 
       
       //var x = document.createElement("img");
       //x.src = closestObj.src;
       //console.log(x);
-      if (aderMode) return closestObj;
+      if (aderMode) return aderModeList[aderPick];
       else return objectsInRange[pick]; 
   },
 

@@ -195,6 +195,7 @@ returnImages = function(callback){
   //var options = optionsTest;
   var storagePrefs;
   chrome.storage.sync.get(["preferences"], function(data) {
+    console.log("CALLBACK");
     storagePrefs = data["preferences"];  
     var options = storagePrefs;
     callback(each(options));
