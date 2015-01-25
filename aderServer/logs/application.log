@@ -19,3 +19,12 @@ database [default] connected at jdbc:h2:mem:play
 2015-01-25 16:28:24,486 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
+2015-01-25 16:37:39,760 - [INFO] - from play in play-internal-execution-context-1 
+datasource [jdbc:h2:mem:play] bound to JNDI as DefaultDS
+
+2015-01-25 16:37:39,762 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:mem:play
+
+2015-01-25 16:37:39,807 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+

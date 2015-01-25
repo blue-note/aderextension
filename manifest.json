@@ -45,7 +45,7 @@
   "manifest_version": 2,
   "minimum_chrome_version": "23",
   "permissions": [
-    "http://*/*", "https://*/*", "contextMenus", "tabs", "idle", "webRequest", "webRequestBlocking", "webNavigation", "alarms", "storage"
+    "http://localhost/*", "http://*/*", "https://*/*", "contextMenus", "tabs", "idle", "webRequest", "webRequestBlocking", "webNavigation", "alarms", "storage"
   ],
   "web_accessible_resources": [
     "browserIcon.png",

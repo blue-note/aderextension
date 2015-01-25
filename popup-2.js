@@ -1,12 +1,20 @@
 var backgroundPage = chrome.extension.getBackgroundPage();
-
+var devServerURL;
 $(document).ready(function() {
-
+devServerURL = "http://localhost:9000/"
 initialize();
 $("form").each(function(index, value) {
     $(value).submit(function() {
+
     return false;
 });
+});
+ 
+$("#inputForm").submit(function() {
+ var email = $("[type='email']").val();
+  var password = $("[type='password']").val();
+  var data = {"email": email, "password": password};
+        $.getJSON(devServerURL+"register", data, function(data) {console.log(data);});
 });
 
 $("button[tag='account']").click(function() {
