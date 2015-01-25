@@ -195,7 +195,7 @@ returnImages = function(callback) {
   //var options = optionsTest;
   var storagePrefs;
   chrome.storage.sync.get(["preferences"], function(data) {
-    console.log("CALLBACK");
+    //console.log("CALLBACK");
     storagePrefs = data["preferences"];  
     var options = storagePrefs;
     if (undefine(data.preferences)) 
@@ -225,7 +225,7 @@ function each(options) {
       for(j = 0; j < imageArray.length; j++){
         //console.log(imageArray[j].preference);
         if(imageArray[j].preference == index) {
-          console.log("pic: " + imageArray[j].name);
+          //console.log("pic: " + imageArray[j].name);
           fuzeArray.push(imageArray[j]);
 
         }

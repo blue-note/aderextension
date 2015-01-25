@@ -97,7 +97,7 @@ function impressions(message, sender, response) {
 if (message.command != "impressions") return;
 //incrementImpressions(1);
 console.log("impressionCount: " + impressionCount);
-setImpressions(impressionCount++);
+setImpressions(++impressionCount);
 /*
 console.log("impressionCount: " + impressionCount);
 var first = (impressionCount == 1);
