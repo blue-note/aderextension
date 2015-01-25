@@ -1,0 +1,63 @@
+<!doctype HTML>
+
+<html>
+<img src="/assets/images/popupA.png" id="logo" style="width:100px;height:100px">
+
+<body>
+
+ <div class="container">
+
+      <form class="form-signin" id="inputForm" role="form">
+        <!--<h2 class="form-signin-heading">Please sign in</h2> -->
+        <div class="supertext">
+           <p></p>
+           
+        </div>
+        <input type="email" name="email" class="form-control" placeholder="email" required autofocus>
+        <input type="password" name="password" class="form-control" placeholder="password" required>
+        <input type="password" name="password" class="form-control" placeholder="confirm password" required>
+        <button class="btn btn-lg btn-primary btn-block" id="accountButton" type="submit">Create Account</button>
+        <div class="subtext">
+           <p>Already have an account?<a href="/assets/signIn.html"> Sign In </a></p>
+           
+        </div>
+        
+      </form>
+
+</div>
+</body>
+
+  <link href="/assets/stylesheets/createAccount.css" rel="stylesheet">
+  <link href="/assets/stylesheets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <!--script src="/assets/javascripts/accountPages.js"></script-->
+ 
+   <script>
+
+$(document).ready(function() {
+var devServerURL = "http://localhost:9000/"; 
+
+
+
+ $("#inputForm").submit(function() {
+  var email = $("[type='email']").val();
+  var password = $("[type='password']").val();
+  var confirmPassword = $("[placeholder='confirm password']").val();
+  if (password != confirmPassword) {
+  $(".supertext").html("Error: passwords do not match");
+  $("[type='password']").val("");
+  }
+  var data = {"email": email, "password": password};
+  //here I need to save this account info OR return error if account already exists
+  $.getJSON(devServerURL+"register", data, function(data) {console.log(data);});
+  return false;
+
+});
+
+
+}); 
+
+
+ </script>
+
+</html>

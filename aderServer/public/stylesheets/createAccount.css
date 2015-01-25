@@ -1,0 +1,72 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  background-color: #F7F7F7;
+}
+
+#logo {
+margin-left: auto;
+margin-right: auto;
+width: 100px;
+margin-top: 70px;
+display: block;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+}
+.form-signin .form-signin-heading,
+.form-signin .subtext {
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: normal;
+}
+
+.form-signin .supertext {
+  font-weight: normal;
+  text-align: center;
+  color: red;
+  padding: 5px;
+}
+
+.form-signin .form-control {
+  position: relative;
+  margin-left: 0px;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[placeholder="password"] {
+  margin-bottom: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin input[placeholder="confirm password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+
+}
+
+
+#accountButton {
+  background-color: #39B54A;
+  border-color: #39B54A;
+}
