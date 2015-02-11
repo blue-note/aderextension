@@ -38,13 +38,26 @@ MasterFilter.prototype = {
 	shouldBlock: function(details){
 		// checks to see if any word from badwords is in the url 
 		// if third party, does it appear often (meaning it's a server they use)
+		var message = {};
+		message.block = false; // set to false for more pruning  
+		message.badWord = false;
+		message.thirdParty = false;
+		message.elType = details.type;
+		message.size = {};
+		message.size["height"] = 0;
+		message.size["width"] = 0;
+		message.allow3rd = false;  // Will make an allow3rd method later 
+		message.obfuscated = false; 
+
 		if(details.tabId == -1){
 			log("oldtab", "cannot block") // old tab 
-			return false;
+			return message;
 		}
 		var domain = parseUri(details.url).hostname;
-		if(domain == this.frameTracker[details.tabId].domain)
-			return false; 
+		if(!inside(domain,details.url))//(domain == this.frameTracker[details.tabId].domain)
+			{ message.thirdParty = true; 
+			  message.block = true;
+			}
 
 		badwords = this.badwords;
 		for (i in badwords){
@@ -60,11 +73,12 @@ MasterFilter.prototype = {
 				log("url",details.url)
 				log("badword", badwords[i]);
 				//log("tabid",details.tabId)
-				return true;
+				message.badWord = true;
+				message.block = true;
 			}
 		}
 
-	return false // if nothing was found
+	return message; // if nothing was found
 	},
 
 	addTainted: function(domain){

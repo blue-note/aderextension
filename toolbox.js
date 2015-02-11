@@ -41,7 +41,7 @@ log = function(word, message){
 
 inside = function(word1, word2){
     var r = new RegExp(word1);
-    return r.test(word2);
+    return r.test(word2); // is word 1 inside word 2
 
 }
     // hugeArray >= Images with 1000,000 pixels

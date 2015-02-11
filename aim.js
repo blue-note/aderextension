@@ -36,7 +36,12 @@ aim = function(details){
 
 	var message = {}
 	var size = getSize(el);
-	message.size = size;
+	message.badWord = details.badWord;
+	message.thirdParty = details.thirdParty;
+	message.elType = details.elType;
+	message.imgSize = size;
+	message.allow3rd = details.allow3rd;
+	message.obfuscated = details.obfuscated;
 	message.command = "image";
 	message.tabId = details.tabId;
 	message.frameId = details.frameId;

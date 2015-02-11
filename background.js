@@ -21,14 +21,14 @@ onBeforeRequest = function(details){
 	//if(!trackable){
 	//	return{cancel: false};
 	//}
-	var blocked = master.shouldBlock(details);
+	var blocked = master.shouldBlock(details); // will turn this into callback
 	//var locked = master.frameTracker[tabId][frameId].locked;
 	
 	// trap is true if we let frame escape blocking 
 	log("url",url);
-	log("block",blocked);
+	log("block",blocked.block);
 
-	if(blocked && ((t == "image") || (t == "object") || (t == "sub_frame") || (t == "other"))) { //if entry doesn't exist, blocked should be false
+	if(blocked.block && ((t == "image") || (t == "object") || (t == "sub_frame") || (t == "other"))) { //if entry doesn't exist, blocked should be false
 		var locked = master.frameTracker[tabId][frameId].locked;
 		
 		log("blocking",t);
@@ -57,16 +57,21 @@ onBeforeRequest = function(details){
 		log("parentUrl",parentUrl);
 		frameList[frameId] = !(undefine(frameList[frameId]));
 		var message = {command:"aim",url:details.url,parent:parentUrl,type:details.type, 
-						getParent:needParent, tabId: tabId, frameId: frameId, frameExist:frameList[frameId]};
+						getParent:needParent, tabId: tabId, frameId: frameId, frameExist:frameList[frameId],
+						badWord:blocked.badWord,thirdParty:blocked.thirdParty,allow3rd:blocked.allow3rd,
+						obfuscated:blocked.obfuscated};
 		log("tabId",tabId);
 		log("frameId",frameId);
 
 		chrome.tabs.sendMessage(tabId,message);
 		return{cancel: false};
 	}
-	//master.debug(tabId, details.frameId);
+	/* else if(blocked.block){
+		return{cancel: blocked};
+	}*/
+
 	return{cancel: false};
-// when something should be blocked, 
+
 };
 
 elementHandler = function(message, sender, response){
@@ -74,7 +79,7 @@ elementHandler = function(message, sender, response){
 		return; // not us
 	//message from aim
 	//put image url in response 
-	var size = message.size;
+	var size = message.imgSize;
 	var width = size["width"];
 	var height = size["height"];
 	log("from aim","success");
@@ -88,10 +93,21 @@ elementHandler = function(message, sender, response){
 		master.frameTracker[message.tabId][message.frameId].locked = true;
 	}
 	*/
+
+	/* var bayesianResult = bayesian.func(message);
+	if (bayesiantResult.isAd)
+		response(imgObj);
+	else
+		response(); 
+
+	})*/
+
 	response(imgObj);
 
 
 };
+
+
 
 function impressions(message, sender, response) {
 if (message.command != "impressions") return;
