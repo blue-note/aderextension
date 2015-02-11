@@ -4,7 +4,7 @@
 		module="aderserver-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20150125143915"
+		publication="20150206152240"
 		e:sbtVersion="0.13" e:scalaVersion="2.10"
 	>
 		<description>

@@ -1,0 +1,39 @@
+/* Organization rules: 
+*, html, body, h1, h2, h3, h4, h5, h6, p, address, blockquote, pre, ul, ol, li, dl,
+dt, dd, table, caption, tr, th, td, form, fieldset, legend, label, input, textarea,
+div, img, a, strong, em, abbr, q, cite, code, kbd, var, span, #id, .class
+*/
+
+html {
+	width: 260px;
+	height: 340px;
+	background-color: #ffffff;
+	font-family: 'Raleway', Arial;
+
+}
+
+body {
+	width: 260px;
+	height: 340px;
+	background-color: #F7F7F7;
+}
+
+
+form {
+padding-left: 10px;
+padding-right: 10px;
+}
+
+#logo {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.padding-sm {
+  padding-top: 10px;
+}
+
+.padding-lg {
+	padding-top: 40px;
+}

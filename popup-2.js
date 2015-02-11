@@ -15,6 +15,7 @@ $("#inputForm").submit(function() {
   var password = $("[type='password']").val();
   var data = {"email": email, "password": password};
         $.getJSON(devServerURL+"register", data, function(data) {console.log(data);});
+        prefPage();
 });
 
 $("button[tag='account']").click(function() {
@@ -27,7 +28,7 @@ var password = form.password.value;
 console.log("email: " + email + " password: " + password);
 */
 //backgroundPage.openTab("website/signIn.html");
-prefPage();
+//prefPage();
 
 });
 
