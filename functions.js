@@ -593,32 +593,34 @@ var classifier = {};
 
 classifier.prototype = {
 
-  numAds: 0;
+  numAds: 55,
   //number of ads that were each of these things
-  num3rdpartyUrl: 0,
-  numallow3rd: 0,
-  numobfuscatedUrl: 0,
+  numbadWord: 30,
+  numthirdpartyUrl: 15,
+  numallow3rd: 15,
+  numobfuscatedUrl: 20,
   numelTypes: {
-  "script": 0, 
-  "image": 0,  
-  "background": 0,
-  "stylesheet": 0,
-  "object": 0,
-  "subdocument": 0,
-  "object_subrequest": 0,
-  "media": 0, 
-  "other": 0, 
+  "script": 2, 
+  "image": 25,  
+  "background": 5,
+  "stylesheet": 1,
+  "object": 17,
+  "subdocument": 3,
+  "object_subrequest": 1,
+  "media": 22, 
+  "other": 20, 
   "xmlhttprequest": 0,
   "document": 0,
   "popup": 0
 },
 
   train: function() {
-  //should receive a training set
+  //should receive a training set and set the prototype vars accordingly
+
   },
 
 
-classify: function(details, callback) {
+classify: function(details) {
 
 /* details should be an object that includes: 
 
@@ -634,10 +636,10 @@ var isAd;
 var prob = 1;
 
 //calculate true/false vars
-if (details.badWord) isAd = true;
-else {
-if (details.3rdparty) prob *= (num3rdpartyUrl)/(numAds);
-else prob *= (numAds - num3rdpartyUrl)/(numAds);
+
+if (details.badWord) prob *= numbadWord/numAds;
+if (details.thirdParty) prob *= (numthirdpartyUrl)/(numAds);
+else prob *= (numAds - numthirdpartyUrl)/(numAds);
 if (details.allow3rd) prob *= (numallow3rd)/(numAds);
 else prob *= (numAds - numallow3rd)(numAds);
 
@@ -646,8 +648,6 @@ prob *= (numelTypes[details.elType]/numAds);
 
 if (details.elType == "image" || details.elType == "object" || details.elType == "sub_frame" || details.elType == "other") {
 //check the dimensions, compute 
-
-
 
 
 }
@@ -661,9 +661,6 @@ else return {"isAd": false, "pAd": prob};
 
 
 }
-
-
-
     
 //console.log("bigArray after Sort "+master.bigArray);
     

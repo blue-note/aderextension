@@ -74,7 +74,7 @@ onBeforeRequest = function(details){
 
 };
 
-elementHandler = function(message, sender, response){
+elementHandler = function(message, sender, response) {
 	if(message.command != "image")
 		return; // not us
 	//message from aim
@@ -93,14 +93,14 @@ elementHandler = function(message, sender, response){
 		master.frameTracker[message.tabId][message.frameId].locked = true;
 	}
 	*/
+	//var bayes = new classifier();
+	//var result = bayes.classify(message);
+	//console.log("result: " + result);
+	//if (result.isAd)
+		//response(imgObj);
+	//else
+		//response(); 
 
-	/* var bayesianResult = bayesian.func(message);
-	if (bayesiantResult.isAd)
-		response(imgObj);
-	else
-		response(); 
-
-	})*/
 
 	response(imgObj);
 
