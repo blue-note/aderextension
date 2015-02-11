@@ -587,6 +587,83 @@ MasterImageList.prototype =
        });
     }
 }
+
+var classifier = {};
+
+
+classifier.prototype = {
+
+  numAds: 0;
+  //number of ads that were each of these things
+  num3rdpartyUrl: 0,
+  numallow3rd: 0,
+  numobfuscatedUrl: 0,
+  numelTypes: {
+  "script": 0, 
+  "image": 0,  
+  "background": 0,
+  "stylesheet": 0,
+  "object": 0,
+  "subdocument": 0,
+  "object_subrequest": 0,
+  "media": 0, 
+  "other": 0, 
+  "xmlhttprequest": 0,
+  "document": 0,
+  "popup": 0
+},
+
+  train: function() {
+  //should receive a training set
+  },
+
+
+classify: function(details, callback) {
+
+/* details should be an object that includes: 
+
+1. “ad” in url: true/false
+2. 3rd party url: true/false
+3. el type: img, iframe, flash, etc.
+4. img size: width x height
+5. do non-ads use 3rd party urls on this site: true/false
+6. obfuscated url: true/false
+
+*/
+var isAd;
+var prob = 1;
+
+//calculate true/false vars
+if (details.badWord) isAd = true;
+else {
+if (details.3rdparty) prob *= (num3rdpartyUrl)/(numAds);
+else prob *= (numAds - num3rdpartyUrl)/(numAds);
+if (details.allow3rd) prob *= (numallow3rd)/(numAds);
+else prob *= (numAds - numallow3rd)(numAds);
+
+//check elType and imgSize
+prob *= (numelTypes[details.elType]/numAds);
+
+if (details.elType == "image" || details.elType == "object" || details.elType == "sub_frame" || details.elType == "other") {
+//check the dimensions, compute 
+
+
+
+
+}
+
+if (prob > 50) return {"isAd": true, "pAd": prob};
+else return {"isAd": false, "pAd": prob};
+
+
+
+}
+
+
+}
+
+
+
     
 //console.log("bigArray after Sort "+master.bigArray);
     
