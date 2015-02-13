@@ -525,7 +525,7 @@ MasterImageList.prototype =
           var ratioDist = Math.abs(obj.width/obj.height - pixelRatio);
 
           if(areaRatio >= rangeOne && areaRatio <= rangeTwo && (obj.ader == aderMode)) {
-            console.log(obj.ader);
+            //console.log(obj.ader);
             objectsInRange.push(obj);
             
             if(ratioDist < closestDist) {
@@ -588,7 +588,9 @@ MasterImageList.prototype =
     }
 }
 
-var classifier = {};
+var classifier = function() {
+
+};
 
 
 classifier.prototype = {
@@ -605,7 +607,7 @@ classifier.prototype = {
   "background": 5,
   "stylesheet": 1,
   "object": 17,
-  "subdocument": 3,
+  "sub_frame": 3,
   "object_subrequest": 1,
   "media": 22, 
   "other": 20, 
@@ -637,22 +639,29 @@ var prob = 1;
 
 //calculate true/false vars
 
-if (details.badWord) prob *= numbadWord/numAds;
-if (details.thirdParty) prob *= (numthirdpartyUrl)/(numAds);
-else prob *= (numAds - numthirdpartyUrl)/(numAds);
-if (details.allow3rd) prob *= (numallow3rd)/(numAds);
-else prob *= (numAds - numallow3rd)(numAds);
+if (details.badWord) prob *= this.numbadWord/this.numAds;
+
+console.log("prob after numbadWord / numAds: " +prob);
+if (details.thirdParty) prob *= (this.numthirdpartyUrl)/(this.numAds);
+else prob *= (this.numAds - this.numthirdpartyUrl)/(this.numAds);
+console.log("prob after numbadWord / numAds: " +prob);
+if (details.allow3rd) prob *= (this.numallow3rd)/(this.numAds);
+else prob *= (this.numAds - this.numallow3rd)/(this.numAds);
+console.log("prob after numbadWord / numAds: " +prob);
 
 //check elType and imgSize
-prob *= (numelTypes[details.elType]/numAds);
+prob *= (this.numelTypes[details.elType]/this.numAds);
+console.log("prob after numbadWord / numAds: " +prob);
 
 if (details.elType == "image" || details.elType == "object" || details.elType == "sub_frame" || details.elType == "other") {
 //check the dimensions, compute 
 
 
 }
+console.log("prob after numbadWord / numAds: " +prob);
 
-if (prob > 50) return {"isAd": true, "pAd": prob};
+//console.log(prob);
+if (prob < 0.5) return {"isAd": true, "pAd": prob};
 else return {"isAd": false, "pAd": prob};
 
 

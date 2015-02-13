@@ -93,16 +93,20 @@ elementHandler = function(message, sender, response) {
 		master.frameTracker[message.tabId][message.frameId].locked = true;
 	}
 	*/
-	//var bayes = new classifier();
-	//var result = bayes.classify(message);
-	//console.log("result: " + result);
-	//if (result.isAd)
-		//response(imgObj);
-	//else
-		//response(); 
+
+	var result = bayes.classify(message);
+	console.log("result: " + result.isAd);
+	console.log("prob: " + result.pAd);
+	if (result.isAd){
+		//console.log("isAd: " + result.isAd);
+		response(imgObj);
+	}
+
+	else
+		response(); 
 
 
-	response(imgObj);
+	//response(imgObj);
 
 
 };
@@ -123,6 +127,7 @@ response(first, impressionCount);
 
 }
 
+var bayes = new classifier();
 var master = new MasterFilter();
 var masterImageList = new MasterImageList();
 masterImageList.filterImages();
