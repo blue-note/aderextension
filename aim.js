@@ -46,12 +46,12 @@ aim = function(details){
 	message.tabId = details.tabId;
 	message.frameId = details.frameId;
 	//var result = {size:s, element:el}
-	shrink(el);
 	if(undefined != size){
 		log("aim","attempting insert");
 		chrome.runtime.sendMessage(extensionID,message,function(imgObj){
 			if(imgObj)
 			{
+				shrink(el);
 				//console.log("yup");
 				//console.log("response: ");
 				//console.log(imgObj.name); //ps3 here but can't get in

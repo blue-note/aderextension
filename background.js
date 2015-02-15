@@ -16,11 +16,12 @@ onBeforeRequest = function(details){
 	var t = details.type;
 	if(typeof master.frameTracker != 'undefined')
 		trackable = master.track(details);
+	else return{cancel: false};
 
 	log("trackable",trackable);
-	//if(!trackable){
-	//	return{cancel: false};
-	//}
+	if(!trackable){
+		//return{cancel: false};  //We still want it to block even if there is no entry
+	}
 	var blocked = master.shouldBlock(details); // will turn this into callback
 	//var locked = master.frameTracker[tabId][frameId].locked;
 	
@@ -28,9 +29,8 @@ onBeforeRequest = function(details){
 	log("url",url);
 	log("block",blocked.block);
 
-	if(blocked.block && ((t == "image") || (t == "object") || (t == "sub_frame") || (t == "other"))) { //if entry doesn't exist, blocked should be false
-		var locked = master.frameTracker[tabId][frameId].locked;
-		
+	if((tabId > 0) & ((t == "image") || (t == "object") || (t == "sub_frame") || (t == "other"))) { //if entry doesn't exist, blocked should be false
+		//var locked = master.frameTracker[tabId][frameId].locked;
 		log("blocking",t);
 		//if(t == "script" || t == "stylesheet" || t == "other"){
 			
