@@ -38,6 +38,8 @@ MasterFilter.prototype = {
 	shouldBlock: function(details){
 		// checks to see if any word from badwords is in the url 
 		// if third party, does it appear often (meaning it's a server they use)
+		var tracker = this.frameTracker;
+
 		var message = {};
 		message.block = false; // set to false for more pruning  
 		message.badWord = false;
@@ -49,15 +51,27 @@ MasterFilter.prototype = {
 		message.allow3rd = false;  // Will make an allow3rd method later 
 		message.obfuscated = false; 
 
+
 		if(details.tabId == -1){
 			log("oldtab", "cannot block") // old tab 
 			return message;
 		}
+
+		
 		var domain = parseUri(details.url).hostname;
-		if(!inside(domain,details.url))//(domain == this.frameTracker[details.tabId].domain)
-			{ message.thirdParty = true; 
-			  message.block = true;
+		var mainDomain = tracker[details.tabId].domain;
+		if(!inside(mainDomain,details.url))//(domain == this.frameTracker[details.tabId].domain)
+			{ 
+		if(this.domains[mainDomain]){
+			if(!undefine(domains[mainDomain].thirdParty)) {
+				message.thirdParty = true;
+				message.block = true; //unnecessary 
 			}
+			else
+				this.domains[mainDomain].thirdParty = false;
+		}
+			}
+
 
 		badwords = this.badwords;
 		for (i in badwords){
@@ -79,6 +93,14 @@ MasterFilter.prototype = {
 		}
 
 	return message; // if nothing was found
+	},
+
+	allow3rd: function(domain){
+		domains[domain].allow3rd = true; 
+	},
+
+	allowImage: function(domain){
+		domains[domain].allowImage = true;
 	},
 
 	addTainted: function(domain){

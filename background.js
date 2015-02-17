@@ -70,7 +70,8 @@ onBeforeRequest = function(details){
 		return{cancel: blocked};
 	}*/
 
-	return{cancel: false};
+	return{cancel: false}; // turning this true blocks scripts before they create ads.
+						// perhaps we should sweep the page multiple times after a timeout
 
 };
 
@@ -98,12 +99,21 @@ elementHandler = function(message, sender, response) {
 	console.log("result: " + result.isAd);
 	console.log("prob: " + result.pAd);
 	if (result.isAd){
+		
 		//console.log("isAd: " + result.isAd);
 		response(imgObj);
 	}
 
-	else
+	else{
+		if(message.thirdParty){
+			master.allow3rd(master.frameTracker[message.tabId].domain);
+		}
+		if(message.type == "image"){
+			master.allowImage(master.frameTracker[message.tabId].domain);
+		}
 		response(); 
+	}
+		
 
 
 	//response(imgObj);
