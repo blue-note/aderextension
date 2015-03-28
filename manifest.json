@@ -24,9 +24,9 @@
     {
       "matches": ["http://*/*", "https://*/*"],
       "js": [
+        "toolbox.js",
         "pics/pics.js",
         "functions.js",
-        "toolbox.js",
         "aim.js",
         "exchanger.js"
       ],
