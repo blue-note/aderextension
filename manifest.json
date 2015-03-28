@@ -17,7 +17,7 @@
       "19": "browserIcon.png",
       "38": "browserIcon.png"
     },
-    "default_popup": "popup.html",
+    "default_popup": "popup-2.html",
     "default_title": "Click to initialize"
   },
   "content_scripts": [

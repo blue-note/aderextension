@@ -35,6 +35,7 @@ console.log("email: " + email + " password: " + password);
 $("button[tag='save']").click(function() {
     console.log("SAVE");
      savePrefs();
+     defaultPage();
     });
 
 $("button[tag='prefs']").click(function() {
