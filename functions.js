@@ -603,17 +603,17 @@ classifier.prototype = {
   numobfuscatedUrl: 20,
   numelTypes: {
   "script": 2, 
-  "image": 25,  
+  "image": 25,
   "background": 5,
-  "stylesheet": 1,
-  "object": 17,
-  "sub_frame": 3,
-  "object_subrequest": 1,
-  "media": 22, 
-  "other": 20, 
-  "xmlhttprequest": 0,
-  "document": 0,
-  "popup": 0
+"stylesheet": 1,
+"object": 17,
+"sub_frame": 3,
+"object_subrequest": 1,
+"media": 22, 
+"other": 20, 
+"xmlhttprequest": 0,
+"document": 0,
+"popup": 0
 },
 
   train: function() {
