@@ -4,15 +4,21 @@ import javax.persistence.*;
 //import play.db.ebean.Model;
 import play.db.jpa.*;
 
+
 @Entity
 public class Person {
-    
-  @Id
-  public int id;     
-    
-  public String email;
 
-  public String password;
+  private int id;     
+   
+  @Id 
+  private String email;
+
+  private String password;
+  
+  public Person() {
+    email = "";
+    password = "";
+  }
 
   public Person(String email, String password) {
     this.id = 0;
@@ -22,7 +28,8 @@ public class Person {
   }
 
   public static Person findById(String id) {
-      return JPA.em().find(Person.class, id);
+      if (!JPA.em().contains(Person.class)) return null;
+     else return JPA.em().find(Person.class, id);
       
   }
    

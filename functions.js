@@ -1,6 +1,6 @@
 var serverURL = "http://ader.klgilbert.com/";
 var devServerURL = "http://localhost:9000/";
-var aderMode = true;
+var aderMode = false;
 
 
 VERBOSE_DEBUG = true;

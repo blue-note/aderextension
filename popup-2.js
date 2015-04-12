@@ -3,6 +3,7 @@ var devServerURL;
 $(document).ready(function() {
 devServerURL = "http://localhost:9000/"
 initialize();
+prefPage();
 $("form").each(function(index, value) {
     $(value).submit(function() {
 

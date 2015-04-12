@@ -19,13 +19,18 @@ public class Authentication extends Controller {
   @Transactional
   public static Result register(String email, String password) {
     //JPA.em().find(Users.class, email);
-      
+    ObjectNode result = Json.newObject();
+    // Person person = Person.findById(email);
+    // if (person == null) result.put("yo", "already exists");
+    // else {
     Person user = new Person(email, password);
     //user.save();
     JPA.em("default").persist(user);
-    ObjectNode result = Json.newObject();
+    //Person person = Person.findById(email);
      result.put("yo", "json sucess");
-     return ok(result);
+     
     //return ok("Success");
+   //}
+   return ok(result);
   }
 }
