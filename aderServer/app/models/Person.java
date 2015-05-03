@@ -5,7 +5,7 @@ import javax.persistence.*;
 import play.db.jpa.*;
 
 
-@Entity
+@javax.persistence.Entity
 public class Person {
 
   private int id;     

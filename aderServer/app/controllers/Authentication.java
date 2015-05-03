@@ -20,7 +20,7 @@ public class Authentication extends Controller {
   public static Result register(String email, String password) {
     //JPA.em().find(Users.class, email);
     ObjectNode result = Json.newObject();
-    // Person person = Person.findById(email);
+    Person person = Person.findById(email);
     // if (person == null) result.put("yo", "already exists");
     // else {
     Person user = new Person(email, password);
