@@ -4,7 +4,11 @@
 		module="aderserver-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
+<<<<<<< HEAD
 		publication="20150328131156"
+=======
+		publication="20150307215517"
+>>>>>>> a54ced625c084fa0275ca8640b298fa9384c90b4
 		e:sbtVersion="0.13" e:scalaVersion="2.10"
 	>
 		<description>

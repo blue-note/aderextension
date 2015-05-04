@@ -7,7 +7,11 @@
 		revision="1.0"
 		conf="runtime"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
+<<<<<<< HEAD
 		date="20150328131201"/>
+=======
+		date="20150307215522"/>
+>>>>>>> a54ced625c084fa0275ca8640b298fa9384c90b4
 	<dependencies>
 		<module organisation="com.typesafe.play" name="play-java-jpa_2.11">
 			<revision name="2.3.7" status="release" pubdate="20150125050003" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://playframework.com" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="71">

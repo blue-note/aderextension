@@ -4,7 +4,11 @@
 		module="ader_2.11"
 		revision="1.0"
 		status="integration"
+<<<<<<< HEAD
 		publication="20150328131201"
+=======
+		publication="20150307215522"
+>>>>>>> a54ced625c084fa0275ca8640b298fa9384c90b4
 	>
 		<description>
 		ader

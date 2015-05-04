@@ -46,12 +46,12 @@ aim = function(details){
 	message.tabId = details.tabId;
 	message.frameId = details.frameId;
 	//var result = {size:s, element:el}
-	shrink(el);
 	if(undefined != size){
 		log("aim","attempting insert");
 		chrome.runtime.sendMessage(extensionID,message,function(imgObj){
 			if(imgObj)
 			{
+				shrink(el);
 				//console.log("yup");
 				//console.log("response: ");
 				//console.log(imgObj.name); //ps3 here but can't get in
@@ -207,13 +207,23 @@ getSize = function(el){
 	var width = window.getComputedStyle(el)["width"];
 	var height = window.getComputedStyle(el)["height"];
 
-
+	/*
 	var w = (el.getAttribute('width') || 
 		window.getComputedStyle('width')||"").match(/^([1-9][0-9]+)(.*)(px)?$/);
 	var h = (el.getAttribute('height') || 
 		window.getComputedStyle('height')||"").match(/^([1-9][0-9]+)(.*)(px)?$/);
-	
-	
+	*/
+
+	var w = el.getAttribute('width');
+	if (w == null) w = (window.getComputedStyle(el)["width"]||"").match(/^([0-9]+)(.*)(px)?$/);
+	else w = w.match(/^([0-9]+)(.*)(px)?$/);
+
+	var h = el.getAttribute('height');
+	if (h == null) h = (window.getComputedStyle(el)["height"]||"").match(/^([0-9]+)(.*)(px)?$/);
+	else h = h.match(/^([0-9]+)(.*)(px)?$/);
+
+
+
     if (w){
     	log("w",w[1]);
         width = parseInt(w[1]);}
@@ -221,18 +231,21 @@ getSize = function(el){
     	log("h",h[1]);
     	height = parseInt(h[1]);}
 
-    if(!height && !width){
-    	log(width,height);
-    	log("no size",typeof el);
-    	return;
-    }
-
     if(!w & h){
     	width = height/8;
     }
     if(!h & w){
     	height = width/8;
     }
+
+    /*
+    if(!height && !width){
+    	log(width,height);
+    	log("no size",typeof el);
+    	return;
+    }
+	*/
+    
     log("get width",width);
     log("get height",height);
 
@@ -245,6 +258,12 @@ getSize = function(el){
 	size["small"] = !size["big"];
 	size["wide"] = (width / height) >= 2;
 	size["tall"] = (height / width) >= 2;
+
+	 if(!h && !w){
+    	log(width,height);
+    	log("no size",typeof el);
+    	return size;
+      }
 
     return size;
 };
