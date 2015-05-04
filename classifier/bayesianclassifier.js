@@ -1,8 +1,17 @@
+$(document).ready(function() {
+
+var adClassifier = new classifier();
+
+
+
+});
+
 var classifier = function() {
 
 };
 
 var train = false; 
+var test = false;
 
 classifier.prototype = {
 
