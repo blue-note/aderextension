@@ -5,18 +5,22 @@
 
 	<body>
 		<br> 
-		<form class="queryInput"> 
+		<form class="queryInput" id="queryForm"> 
 			  <input type="radio" name="badWord"> "ad." in url <br> 
-			  <input type="radio" name="thirdpartyUrl"> third party url <br> 
+			  <input type="radio" name="thirdParty"> third party url <br> 
 			  <input type="radio" name="allow3rd"> website allows third party urls <br> 
 			  <input type="radio" name="embeddedUrl"> embedded url <br> <br>
 			  element type: <input type="text" name="elType">  <br> <br>
-
+			  width: <input type="text" name="width"> <br> 
+			  height: <input type="text" name="height"> <br> 
+			  <br>
 			 <input type="radio" name="train"> train <br>
 			 <input type="radio" name="test"> test <br> <br>
-			 <button type="submit"> Submit </button>
+			 <button id="form-submit" type="submit"> Submit </button>
 
 		</form>
+
+		<div id="result"></div>
 
 	</body>
 

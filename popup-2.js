@@ -66,7 +66,7 @@ function savePrefs() {
         //console.log("prefs in popup: " + prefs);
         //console.log("prefs in popup: " + prefs[s]);
     });
-    if (count == 0) prefs = {"tech": true, "music": false, "gaming": false, "fashion": false, "cosmetics": false};
+   /* if (count == 0)*/ prefs = {"tech": false, "music": false, "gaming": true, "fashion": false, "cosmetics": false};
     console.log("prefs after each: " + prefs);
     chrome.storage.sync.set({"preferences": prefs}, function() {
     //console.log("callbackFilter");
