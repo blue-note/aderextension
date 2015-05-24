@@ -5,7 +5,7 @@
 
 	<body>
 		<br> 
-		<form class="queryInput" id="queryForm"> 
+		<div class="queryInput" id="queryForm"> 
 			  <input type="radio" name="badWord"> "ad." in url <br> 
 			  <input type="radio" name="thirdParty"> third party url <br> 
 			  <input type="radio" name="allow3rd"> website allows third party urls <br> 
@@ -16,11 +16,15 @@
 			  <br>
 			 <input type="radio" name="train"> train <br>
 			 <input type="radio" name="test"> test <br> <br>
-			 <button id="form-submit" type="submit"> Submit </button>
+			 <button id="form-submit"> Submit </button>
 
-		</form>
+		</div>
+		<br>
+		<button id="reset-button"> Reset </button>
+		<br> <br>
+		Training Set Size: <div id="numAds"> </div> <br>
+		is Ad: <div id="result"> </div> <br> <br>
 
-		<div id="result"></div>
 
 	</body>
 

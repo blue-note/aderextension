@@ -1,10 +1,18 @@
+var adClassifier;
+
 $(document).ready(function() {
 
-var adClassifier = new classifier();
+adClassifier = new classifier();
 
 var input = {};
 
-$("#queryForm").submit(function() {
+$("#reset-button").click(function() {
+
+reset();
+
+});
+
+$("#form-submit").click(function() {
 
   input["badWord"] = $('input[name=badWord]:checked', '#queryForm').val();
   input["thirdParty"] = $('input[name=thirdParty]:checked', '#queryForm').val();
@@ -15,19 +23,29 @@ $("#queryForm").submit(function() {
   input["height"] = $('input[name=height]', '#queryForm').val();
 
   var mode = $('input[name=train]:checked', '#queryForm').val();
-  if (mode == "on") adClassifier.trainInput(input);
-  else adClassifier.testInput(input);
+  if (mode == "on") adClassifier._train(input);
+  else adClassifier._test(input);
 
+  
 });
 
 });
+
+var reset = function() {
+
+  $.each($("input:checked"), function(index, value) {
+    this.checked = false;
+
+  });
+
+
+}
+
 
 var classifier = function() {
 
 };
 
-var train = false; 
-var test = false;
 
 classifier.prototype = {
 
@@ -53,7 +71,7 @@ classifier.prototype = {
   "popup": 0
 },
 
-trainInput: function(input) {
+_train: function(input) {
   //adds features of this input ad to classifier training set
 
 var that = this;
@@ -65,30 +83,24 @@ $.each(input, function(index, value) {
   else that.elType[value]++;
 }
 
+$("#numAds").html(adClassifier.numAds);
+
 });
 
 
   },
 
-testInput: function(input) {
+_test: function(input) {
 
 var result = this.classify(input);
-console.log(result);
+if (result.isAd) $("#result").html("Yes");
+else $("#result").html("No");
 
 },
 
 classify: function(details) {
   
-
-/* details should be an object that includes: 
-
-1. “ad” in url: true/false
-2. 3rd party url: true/false
-3. el type: img, iframe, flash, etc.
-4. img size: width x height
-5. do non-ads use 3rd party urls on this site: true/false
-6. obfuscated url: true/false
-*/
+//calculates the probabilities of each feature corresponding to an advertisement
 
 var prob_badWord = this.badWord/this.numAds;
 var prob_thirdParty = this.thirdpartyUrl/this.numAds;
